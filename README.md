@@ -22,3 +22,14 @@ Java SpringBoot
 - Axel LEBAS:
   - Aucune expérience avec SpringBoot
   - Compétences limitées en Java
+
+## Installation
+
+### Requis
+
+- Java 11 (bien vérifier JAVA_HOME, avec `java --version`)
+- Bash/Zsh
+
+### Run
+
+./mvnw spring-boot:run
