@@ -33,3 +33,8 @@ Java SpringBoot
 ### Run
 
 ./mvnw spring-boot:run
+
+Depuis le plugin maven :
+mvn spring-boot:run
+
+npx kill-port 3000
