@@ -6,19 +6,48 @@
 	},
 	"item": [
 		{
-			"name": "Hello world",
+			"name": "Add question",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"2\",\n    \"author\":\"Maxime\",\n    \"message\":\"Que-penses tu de cet endpoint?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:3000/hello",
+					"raw": "http://localhost:3000/question/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"hello"
+						"question",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all quesitons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/question",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"question"
 					]
 				}
 			},
