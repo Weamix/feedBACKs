@@ -3,7 +3,6 @@ package com.example.feedbacks.repositories;
 import com.example.feedbacks.entities.Question;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 
 @Repository

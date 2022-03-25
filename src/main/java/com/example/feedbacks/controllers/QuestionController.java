@@ -5,7 +5,6 @@ import com.example.feedbacks.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
-
 import java.util.ArrayList;
 
 @RestController
@@ -19,16 +18,16 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    void addQuestion(@RequestBody Question question){
-        questionService.addQuestion(question);
+    public void addQuestion(@RequestBody Question question){
+        this.questionService.addQuestion(question);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    ArrayList<Question> getAllQuestions(){
+    public ArrayList<Question> getAllQuestions(){
         return questionService.getAllQuestions();
     }
 
