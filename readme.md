@@ -18,6 +18,7 @@ Application web de demande de feedbacks aux collègues.
 ### Langage / Framework utilisé
 
 Java SpringBoot
+
 Lombook (Getters/Setters auto généré avec une annotation au début des classes)
 
 ### Niveau sur le langage / framework utilisé
@@ -55,6 +56,9 @@ npx kill-port 3000
 ```
 
 ### Links
+
 Swagger : http://localhost:3000/swagger-ui/#/
+
 App : http://localhost:3000/
+
 Postman available in directory : postman/feedbacks.json

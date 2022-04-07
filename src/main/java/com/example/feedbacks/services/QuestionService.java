@@ -22,6 +22,10 @@ public class QuestionService{
         questionRepository.addQuestion(question);
     }
 
+    public Question getQuestion(Integer id) {
+        return questionRepository.getQuestion(id);
+    }
+
     public ArrayList<Question> getAllQuestions() {
         return questionRepository.getAllQuestions();
     }

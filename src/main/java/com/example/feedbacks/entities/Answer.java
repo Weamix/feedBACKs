@@ -8,4 +8,6 @@ import lombok.Setter;
 public class Answer {
     private int id;
     private String message;
+    // stocké l'auteur car une question peut avoir une réponse par plusieurs personnes
+    private String author;
 }

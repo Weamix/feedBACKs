@@ -23,5 +23,15 @@ public class QuestionRepositoryMemory implements QuestionRepository {
     public ArrayList<Question> getAllQuestions(){
         return questions;
     }
+
+    @Override
+    public Question getQuestion(Integer id) {
+        for (Question question : questions) {
+            if (question.getId().equals(id)) {
+                return question;
+            }
+        }
+        return null;
+    }
 }
 

@@ -6,4 +6,5 @@ import java.util.ArrayList;
 public interface QuestionRepository {
     void addQuestion(Question question);
     ArrayList<Question> getAllQuestions();
+    Question getQuestion(Integer id);
 }

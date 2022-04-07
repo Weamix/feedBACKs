@@ -6,7 +6,5 @@ import lombok.Setter;
 @Setter
 public class Question {
     private Integer id;
-    private String author;
     private String message;
-    //private List<Answer> answers;
 }
