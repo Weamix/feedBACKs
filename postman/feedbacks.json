@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\":\"2\",\n    \"author\":\"Maxime\",\n    \"message\":\"Que-penses tu de cette endpoint?\"\n}",
+					"raw": "{\n    \"id\":\"2\",\n    \"message\":\"Que-penses tu de cette endpoint?\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,7 +60,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"questions\":[2]\n}",
+					"raw": "{\n    \"author\":\"Maxime\",\n    \"questions\":[\n        { \n          \"id\":\"1\",\n          \"message\":\"Que-penses tu de cette endpoint?\"\n        },\n        { \n          \"id\":\"2\",\n          \"message\":\"Que-penses tu de cette api?\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,20 +88,70 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/form?formId=1",
+					"raw": "http://localhost:3000/form/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"form"
-					],
-					"query": [
-						{
-							"key": "formId",
-							"value": "1"
+						"form",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add answer for question id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"author\": \"string\",\n  \"id\": 0,\n  \"message\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/form/1/question/1/answer/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"form",
+						"1",
+						"question",
+						"1",
+						"answer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get answers by question id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/form/1/answers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"form",
+						"1",
+						"answers",
+						"1"
 					]
 				}
 			},
