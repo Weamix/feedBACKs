@@ -2,13 +2,15 @@ package com.example.feedbacks.repositories;
 
 import com.example.feedbacks.entities.Answer;
 import com.example.feedbacks.entities.Form;
+import com.example.feedbacks.entities.Question;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.HashMap;
 
 @Repository
+@Qualifier("memory")
 public class FormRepositoryMemory implements FormRepository{
     public ArrayList<Form> forms;
 
@@ -18,7 +20,20 @@ public class FormRepositoryMemory implements FormRepository{
 
     @Override
     public void addForm(Form form) {
+        if (form.getAnswers() == null){
+            form.setAnswers(new HashMap<>());
+
+            // add empty answers to each questions
+            for (Question q : form.getQuestions()){
+                form.getAnswers().put(q.getId(), new ArrayList<>());
+            }
+        }
         this.forms.add(form);
+    }
+
+    @Override
+    public ArrayList<Form> getAllForms() {
+        return forms;
     }
 
     @Override
@@ -28,39 +43,39 @@ public class FormRepositoryMemory implements FormRepository{
                 return f;
             }
         }
+
+        // est-ce qu'on peut faire autrement pour la gestion des exceptions ?
+        // Il faudrait peut etre créer une classe d'exception pour les erreurs (genre FormNotFoundException)
         throw new IllegalArgumentException("Form with id " + formId + " not found");
     }
 
     @Override
-    public ArrayList<Form> getAllForms() {
-        return forms;
+    public HashMap<Integer, ArrayList<Answer>> getAllAnswers(Integer formId) {
+        // Le problème ici c'est qu'on dépends de la méthode getFormById qui peut retourner une exception, jsp si c'est bien
+        return this.getFormById(formId).getAnswers();
     }
 
     @Override
-    public List<Answer> getAnswers(Integer formId, Integer questionId) {
-        // todo : try  catch
-        Map<Integer, ArrayList<Answer>> resAnswers = getFormById(formId).getAnswers();
+    public ArrayList<Answer> getAnswers(Integer formId, Integer questionId) {
+        HashMap<Integer, ArrayList<Answer>> formAnswers = this.getAllAnswers(formId);
 
-        if (resAnswers == null){
-            throw new IllegalArgumentException("There is no answer for this form question");
+        ArrayList<Answer> questionAnswers = formAnswers.get(questionId);
+
+        // pas ouf, il faut voir si on peut faire mieux avec un nouveau endpoint GET /form/1/question (si on suit le modèle de getAllAnswers avec une dépendence à d'autres méthodes)
+        if (questionAnswers == null) {
+            throw new IllegalArgumentException("There is no answer for question id " + questionId + " in form id " + formId);
         }
 
-        return resAnswers.get(questionId);
+        return questionAnswers;
     }
 
     @Override
     public void addAnswer(Integer formId, Integer questionId, Answer answer) {
-        //TODO fix this shit
-        /*Form form = getFormById(formId);
-        Map<Integer, ArrayList<Answer>> resAnswers = form.getAnswers();
+        // on dépend de getAllAnswers qui dépends elle-même de getFormById.....
+        HashMap<Integer, ArrayList<Answer>> formAnswers = this.getAllAnswers(formId);
 
-        //ArrayList<Answer> answersOfQuestionId = form.getAnswers().get(questionId);
+        ArrayList<Answer> questionAnswers = formAnswers.computeIfAbsent(questionId, k -> new ArrayList<>());
 
-        if (resAnswers == null){
-            resAnswers = new ArrayList<>();
-            form.getAnswers().put(questionId, resAnswers);
-        }
-
-        resAnswers.put(Map<questionId, answer>);*/
+        questionAnswers.add(answer);
     }
 }
