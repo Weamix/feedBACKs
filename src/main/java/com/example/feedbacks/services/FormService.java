@@ -36,11 +36,11 @@ public class FormService {
     }
 
     public HashMap<Integer, ArrayList<Answer>> getAllAnswers(Integer formId) {
-        return this.formRepository.getAllAnswers(formId);
+        return this.formRepository.getFormById(formId).getAnswers();
     }
 
     public ArrayList<Answer> getAnswers(Integer formId, Integer questionId) {
-        return this.formRepository.getAnswers(formId, questionId);
+        return this.formRepository.getAnswersOfQuestion(formId, questionId);
     }
 
     public void addAnswer(Integer formId, Integer questionId, Answer answer) {
