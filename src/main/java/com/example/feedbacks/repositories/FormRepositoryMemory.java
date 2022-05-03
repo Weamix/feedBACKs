@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 @Repository
 @Qualifier("memory")
@@ -72,10 +73,18 @@ public class FormRepositoryMemory implements FormRepository{
     @Override
     public void addAnswer(Integer formId, Integer questionId, Answer answer) {
         // on dépend de getAllAnswers qui dépends elle-même de getFormById.....
+
+        Set<Question> formQuestions = this.getFormById(formId).getQuestions();
         HashMap<Integer, ArrayList<Answer>> formAnswers = this.getAllAnswers(formId);
 
-        ArrayList<Answer> questionAnswers = formAnswers.computeIfAbsent(questionId, k -> new ArrayList<>());
+        // on vérifie que questionId existe bien dans le formulaire
+        for (Question q : formQuestions) {
+            if (q.getId().equals(questionId)) {
+                formAnswers.get(questionId).add(answer);
+                return;
+            }
+        }
 
-        questionAnswers.add(answer);
+        throw new IllegalArgumentException("There is no question with id " + questionId + " in form id " + formId);
     }
 }
