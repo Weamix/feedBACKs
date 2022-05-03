@@ -17,8 +17,5 @@ public interface FormRepository {
 
     void addAnswer(Integer formId, Integer questionId, Answer answer);
 
-    // TODO: addQuestion (ne pas oublier de mettre à jour la map answers)
     void addQuestion(Integer formId, Question question);
-
-    // TODO: Update ? (form, answer, question?)
 }

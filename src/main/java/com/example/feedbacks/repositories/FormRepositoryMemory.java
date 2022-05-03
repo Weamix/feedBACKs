@@ -67,8 +67,6 @@ public class FormRepositoryMemory implements FormRepository {
 
     @Override
     public void addAnswer(Integer formId, Integer questionId, Answer answer) {
-        // on dépend de getAllAnswers qui dépends elle-même de getFormById.....
-
         Set<Question> formQuestions = this.getFormById(formId).getQuestions();
         HashMap<Integer, ArrayList<Answer>> formAnswers = this.getFormById(formId).getAnswers();
 
@@ -85,6 +83,10 @@ public class FormRepositoryMemory implements FormRepository {
 
     @Override
     public void addQuestion(Integer formId, Question question) {
+        // add question
+        this.getFormById(formId).getQuestions().add(question);
 
+        // add empty answers to question
+        this.getFormById(formId).getAnswers().put(question.getId(), new ArrayList<>());
     }
 }
