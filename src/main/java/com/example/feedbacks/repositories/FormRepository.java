@@ -18,4 +18,8 @@ public interface FormRepository {
     void addAnswer(Integer formId, Integer questionId, Answer answer);
 
     void addQuestion(Integer formId, Question question);
+
+    void deleteQuestion(Integer formId, Integer questionId);
+
+    void deleteAnswer(Integer formId, Integer questionId, Integer answerId);
 }

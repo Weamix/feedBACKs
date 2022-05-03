@@ -89,4 +89,27 @@ public class FormRepositoryMemory implements FormRepository {
         // add empty answers to question
         this.getFormById(formId).getAnswers().put(question.getId(), new ArrayList<>());
     }
+
+    @Override
+    public void deleteQuestion(Integer formId, Integer questionId) {
+        for (Question q : this.getFormById(formId).getQuestions()) {
+            if (q.getId().equals(questionId)) {
+                this.getFormById(formId).getQuestions().remove(q);
+                this.getFormById(formId).getAnswers().remove(questionId);
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("There is no question with id " + questionId + " in form id " + formId);
+    }
+
+    @Override
+    public void deleteAnswer(Integer formId, Integer questionId, Integer answerId) {
+        for (Answer a : this.getAnswersOfQuestion(formId, questionId)) {
+            if (a.getId().equals(answerId)) {
+                this.getFormById(formId).getAnswers().get(questionId).remove(a);
+                return;
+            }
+        }
+    }
 }
