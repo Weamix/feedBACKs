@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class FormService {
@@ -35,7 +36,7 @@ public class FormService {
         return this.formRepository.getFormById(formId);
     }
 
-    public HashMap<Integer, ArrayList<Answer>> getAllAnswers(Integer formId) {
+    public Map<Integer, ArrayList<Answer>> getAllAnswers(Integer formId) {
         return this.formRepository.getFormById(formId).getAnswers();
     }
 

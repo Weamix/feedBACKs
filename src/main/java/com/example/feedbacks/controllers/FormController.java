@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/form")
@@ -48,7 +49,7 @@ public class FormController {
     @GetMapping(value="/{formId}/answer/")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public HashMap<Integer, ArrayList<Answer>> getAnswersByFormId(@PathVariable final Integer formId){
+    public Map<Integer, ArrayList<Answer>> getAnswersByFormId(@PathVariable final Integer formId){
         try {
             return this.formService.getAllAnswers(formId);
         } catch (IllegalArgumentException e) {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Repository
@@ -53,7 +54,7 @@ public class FormRepositoryMemory implements FormRepository {
 
     @Override
     public ArrayList<Answer> getAnswersOfQuestion(Integer formId, Integer questionId) {
-        HashMap<Integer, ArrayList<Answer>> formAnswers = this.getFormById(formId).getAnswers();
+        Map<Integer, ArrayList<Answer>> formAnswers = this.getFormById(formId).getAnswers();
 
         ArrayList<Answer> questionAnswers = formAnswers.get(questionId);
 
@@ -68,7 +69,7 @@ public class FormRepositoryMemory implements FormRepository {
     @Override
     public void addAnswer(Integer formId, Integer questionId, Answer answer) {
         Set<Question> formQuestions = this.getFormById(formId).getQuestions();
-        HashMap<Integer, ArrayList<Answer>> formAnswers = this.getFormById(formId).getAnswers();
+        Map<Integer, ArrayList<Answer>> formAnswers = this.getFormById(formId).getAnswers();
 
         // on vérifie que questionId existe bien dans le formulaire
         for (Question q : formQuestions) {
