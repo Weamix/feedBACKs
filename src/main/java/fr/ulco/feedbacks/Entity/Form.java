@@ -17,6 +17,7 @@ import java.util.Objects;
 @AllArgsConstructor
 //@NoArgsConstructor
 @Entity
+@Table(name = "forms")
 public class Form {
 
     @Id

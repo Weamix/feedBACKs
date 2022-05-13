@@ -1,6 +1,6 @@
 package fr.ulco.feedbacks.Service;
 
-import fr.ulco.feedbacks.DAO.FormDAO;
+import fr.ulco.feedbacks.Repository.FormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,10 @@ import org.springframework.stereotype.Service;
 public class FormService {
 
     @Qualifier("memoryData")
-    private final FormDAO formDAO;
+    private final FormRepository formRepository;
 
     @Autowired
-    public FormService(FormDAO formDAO) {
-        this.formDAO = formDAO;
-    }
-
-    public String getAllForm() {
-        return null;
+    public FormService(FormRepository formRepository) {
+        this.formRepository = formRepository;
     }
 }
