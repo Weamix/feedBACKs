@@ -25,13 +25,13 @@ public class Answer {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "questionId", referencedColumnName = "questionId")
+    @JoinColumn(name = "question_id")
     @ToString.Exclude
     private Question question;
 
     // an answer can have one author, one author can have many answers
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
 

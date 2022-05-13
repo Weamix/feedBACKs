@@ -26,7 +26,7 @@ public class Question {
     @NotBlank(message = "Please enter a the question content")
     private String content;
 
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private User user;
@@ -34,7 +34,7 @@ public class Question {
     private Instant createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "formId", referencedColumnName = "formId")
+    @JoinColumn(name = "form_id")
     @ToString.Exclude
     private Form form;
 
