@@ -62,3 +62,20 @@ Swagger : http://localhost:3000/swagger-ui/#/
 App : http://localhost:3000/
 
 Postman available in directory : postman/feedbacks.json
+
+### Comment ça marche depuis la branche base:
+
+#### Pour lancer l'app
+
+On run pareil qu'avant (il y a juste un dockerfile où on mettra le jar final pour le rendu à Clément, comme ça il aura juste à faire un docker run pour lancer l'app)
+
+#### Pour lancer la base psql
+
+`docker-compose up` dans le dossier racine de l'app
+
+#### Résumé
+
+- Tu lance la base psql
+- Tu start l'app
+
+Il y a sûrement moyen de faire ça en une seule commande, mais osef c'est déjà bien comme ça.

@@ -1,10 +1,10 @@
-package com.example.feedbacks;
+package fr.ulco.feedbacks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FeedbacksApplicationTests {
+class FeedbacksAppApplicationTests {
 
 	@Test
 	void contextLoads() {
