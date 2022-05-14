@@ -38,7 +38,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": 4,\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"email\": \"string\",\n  \"roles\": [\n    {\n      \"id\": 1,\n      \"name\": \"USER\"\n    }\n  ]\n}",
+							"raw": "{\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"email\": \"string\",\n  \"roles\": [\n    {\n      \"id\": 1,\n      \"name\": \"USER\"\n    }\n  ]\n}\n\n//  \"id\": 4,",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -65,7 +65,7 @@
 					"response": []
 				},
 				{
-					"name": "login",
+					"name": "login as a USER",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -80,6 +80,44 @@
 								{
 									"key": "password",
 									"value": "fasquel",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://192.168.99.100:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"99",
+								"100"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as an ADMIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "weamix",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "maxime",
 									"type": "text"
 								}
 							]
