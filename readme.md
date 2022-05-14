@@ -34,8 +34,7 @@ Lombook (Getters/Setters auto généré avec une annotation au début des classe
 
 ### Recquis
 
-//TODO : dockeriser pour lancer rapidement l'APP et plus aucun soucis de version de JAVA?
-- Java 8 (bien vérifier JAVA_HOME, avec `java --version`)
+- Java 17
 - Bash/Zsh
 
 ### Run
@@ -63,19 +62,12 @@ App : http://localhost:3000/
 
 Postman available in directory : postman/feedbacks.json
 
-### Comment ça marche depuis la branche base:
+### Fonctionnement depuis la branche base:
 
-#### Pour lancer l'app
+#### Pour lancer le projet
 
-On run pareil qu'avant (il y a juste un dockerfile où on mettra le jar final pour le rendu à Clément, comme ça il aura juste à faire un docker run pour lancer l'app)
-
-#### Pour lancer la base psql
-
-`docker-compose up` dans le dossier racine de l'app
-
-#### Résumé
-
-- Tu lance la base psql
-- Tu start l'app
-
-Il y a sûrement moyen de faire ça en une seule commande, mais osef c'est déjà bien comme ça.
+Depuis le dossier racine de l'app :
+```
+docker build -t feedbacks.jar .
+docker-compose up
+```

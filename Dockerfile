@@ -1,6 +1,6 @@
 # docker file for the spring boot application
 FROM openjdk:17
+SHELL ["mvn install -DskipTests"]
+ADD target/feedbacks-api-docker.jar feedbacks.jar
+ENTRYPOINT ["java", "-jar", "feedbacks.jar"]
 EXPOSE 8080
-ARG JAR_FILE=target/feedbacks-app-0.0.1-SNAPSHOT.jar
-ADD $JAR_FILE /app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
