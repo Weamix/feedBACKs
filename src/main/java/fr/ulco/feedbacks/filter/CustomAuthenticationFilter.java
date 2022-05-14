@@ -32,9 +32,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         /* getParameter du coup body pas en json mais en x-www-form-urlencoded
-        Possible d'utiliser JsonMapper pour passer en JSON
+            Possible d'utiliser JsonMapper pour passer en JSON
          */
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
@@ -57,8 +56,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withExpiresAt(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .sign(algorithm);
-        /*response.setHeader("access_token", accessToken);
-        response.setHeader("refreshToken", refreshToken);*/
+
         Map<String, String> tokens = new HashMap<>();
         tokens.put("access_token", accessToken);
         tokens.put("refreshToken", refreshToken);

@@ -22,11 +22,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    // construcots are initialized with lombook RequiredArgsConstructor
+    // constructors are initialized with lombook RequiredArgsConstructor
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-
 
     @Override
     public User saveUser(User user) {
@@ -59,7 +58,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-        if(user == null) {
+        if (user == null) {
             throw new UsernameNotFoundException("User not found in the database");
         } else {
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -67,5 +66,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 authorities.add(new SimpleGrantedAuthority(role.getName()));
             });
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
-        }    }
+        }
+    }
 }

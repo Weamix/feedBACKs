@@ -28,6 +28,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
+    /*
+    //Utilité?
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,4 +43,5 @@ public class User {
     public int hashCode() {
         return getClass().hashCode();
     }
+    */
 }
