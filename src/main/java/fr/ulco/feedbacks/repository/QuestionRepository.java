@@ -1,6 +1,6 @@
-package fr.ulco.feedbacks.Repository;
+package fr.ulco.feedbacks.repository;
 
-import fr.ulco.feedbacks.Entity.Question;
+import fr.ulco.feedbacks.entity.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

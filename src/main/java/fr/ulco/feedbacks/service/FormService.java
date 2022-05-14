@@ -1,6 +1,6 @@
-package fr.ulco.feedbacks.Service;
+package fr.ulco.feedbacks.service;
 
-import fr.ulco.feedbacks.Repository.FormRepository;
+import fr.ulco.feedbacks.repository.FormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

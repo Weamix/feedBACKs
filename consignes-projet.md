@@ -6,7 +6,10 @@ Dans le cadre du module des services web, vous devez réaliser un projet s'artic
 
 Pour ce faire, vous :
 
-- Créerez des services web REST en utilisant les verbes utilisés en cours (GET, POST, PUT, DELETE) [3 Controller minimum].
+- Créerez des services web REST en utilisant les verbes utilisés en cours (GET, POST, PUT, DELETE) [3 Controller minimum] :
+    - USER
+    - FORM
+    - ?
 - Consommerez des services web REST (Ceux que vous avez crées, via un front web , un bot discord, une app mobile...)
 - Consommerez des services web externes (Twitter, Facebook, Google, Twitch, toute autre api externe...)
 

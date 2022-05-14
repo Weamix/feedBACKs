@@ -1,11 +1,8 @@
-package fr.ulco.feedbacks.Repository;
+package fr.ulco.feedbacks.repository;
 
-import fr.ulco.feedbacks.Entity.Answer;
-import fr.ulco.feedbacks.Entity.Question;
+import fr.ulco.feedbacks.entity.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Long> {

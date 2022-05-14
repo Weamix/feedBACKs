@@ -39,9 +39,9 @@ Lombook (Getters/Setters auto généré avec une annotation au début des classe
 
 ### Links
 
-Swagger : http://localhost:3000/swagger-ui/#/
+Swagger : [http://192.168.99.100:8080/swagger-ui/index.html][http://192.168.99.100:8080/swagger-ui/index.html]
 
-API : http://192.168.99.100:8080/
+API : [http://192.168.99.100:8080/][http://192.168.99.100:8080/]
 
 Postman available in directory : postman/feedbacks.json
 
@@ -57,3 +57,7 @@ mvn install -DskipTests
 docker build -t feedbacks.jar .
 docker-compose up
 ```
+
+[http://192.168.99.100:8080/swagger-ui/index.html]: http://192.168.99.100:8080/swagger-ui/index.html
+
+[http://192.168.99.100:8080/]: http://192.168.99.100:8080/

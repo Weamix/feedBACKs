@@ -1,9 +1,9 @@
-package fr.ulco.feedbacks.Controller;
+package fr.ulco.feedbacks.controller;
 
-import fr.ulco.feedbacks.Service.FormService;
+import fr.ulco.feedbacks.service.FormService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,8 +16,8 @@ public class FormController {
         this.formService = formService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public String getForm() {
-        return "ntm";
+        return "Get form OK";
     }
 }

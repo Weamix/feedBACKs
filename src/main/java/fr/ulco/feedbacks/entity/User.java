@@ -1,4 +1,4 @@
-package fr.ulco.feedbacks.Entity;
+package fr.ulco.feedbacks.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -20,9 +20,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-    @NotBlank(message = "Please enter your user name")
+    @NotBlank
     private String userName;
-    @NotBlank(message = "Please enter your password")
+    @NotBlank
     private String password;
     @Email
     private String email;

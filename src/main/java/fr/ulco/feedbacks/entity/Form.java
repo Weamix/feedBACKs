@@ -1,4 +1,4 @@
-package fr.ulco.feedbacks.Entity;
+package fr.ulco.feedbacks.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
