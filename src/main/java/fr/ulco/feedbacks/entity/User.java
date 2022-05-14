@@ -4,35 +4,37 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
-
 @Getter
 @Setter
-@ToString
-@RequiredArgsConstructor
-@AllArgsConstructor
-//@NoArgsConstructor
 @Entity
+//@RequiredArgsConstructor
+//@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    @NotBlank
-    private String userName;
-    @NotBlank
+    private Long id;
+
+    private String username;
     private String password;
-    @Email
     private String email;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         User user = (User) o;
-        return userId != null && Objects.equals(userId, user.userId);
+        return id != null && Objects.equals(id, user.id);
     }
 
     @Override

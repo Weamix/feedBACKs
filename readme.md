@@ -43,7 +43,7 @@ Swagger : [http://192.168.99.100:8080/swagger-ui/index.html][http://192.168.99.1
 
 API : [http://192.168.99.100:8080/][http://192.168.99.100:8080/]
 
-Postman available in directory : postman/feedbacks.json
+Postman available in directory : [feedBACKs.json](./postman/feedBACKs.json)
 
 ### Fonctionnement depuis la branche base:
 
