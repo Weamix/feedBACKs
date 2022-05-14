@@ -18,6 +18,6 @@ public class FormController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getForm() {
-        return null;
+        return "ntm";
     }
 }

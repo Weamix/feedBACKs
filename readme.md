@@ -1,4 +1,4 @@
-# FeedBacks
+# FeedBACKs
 
 ## Projet
 
@@ -8,7 +8,7 @@ Application web de demande de feedbacks aux collègues.
 
 - Création d'un formulaire avec ajouts de questions
 - Partage du formulaire à un ou plusieurs collègues
-- Celles-ci peuvent y répondre.
+- Ceux-ci peuvent y répondre.
 
 ### Équipe
 
@@ -17,7 +17,7 @@ Application web de demande de feedbacks aux collègues.
 
 ### Langage / Framework utilisé
 
-Java SpringBoot
+Java SpringBoot & Hibernate
 
 Lombook (Getters/Setters auto généré avec une annotation au début des classes)
 
@@ -34,31 +34,14 @@ Lombook (Getters/Setters auto généré avec une annotation au début des classe
 
 ### Recquis
 
-- Java 17
+- Docker (Java 17 & postgres inclus)
 - Bash/Zsh
-
-### Run
-
-Depuis le terminal :
-```
-./mvnw spring-boot:run
-```
-
-Depuis le plugin maven :
-```
-mvn spring-boot:run
-```
-
-Kill a port if already in used
-```
-npx kill-port 3000
-```
 
 ### Links
 
 Swagger : http://localhost:3000/swagger-ui/#/
 
-App : http://localhost:3000/
+API : http://192.168.99.100:8080/
 
 Postman available in directory : postman/feedbacks.json
 
@@ -68,6 +51,9 @@ Postman available in directory : postman/feedbacks.json
 
 Depuis le dossier racine de l'app :
 ```
+# line 3 of dockefile seems not working :
+mvn install -DskipTests
+
 docker build -t feedbacks.jar .
 docker-compose up
 ```
