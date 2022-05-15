@@ -9,10 +9,16 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "get all users",
+					"name": "get all users - need to be login as ADMin and have Bearer (JWT)",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjE2MjU0fQ.goBkGeeGnr64DjzvH3rzbngHFnf8mrZcHhJMoyESuKc",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://192.168.99.100:8080/auth/users",
 							"protocol": "http",
@@ -32,7 +38,7 @@
 					"response": []
 				},
 				{
-					"name": "add an user",
+					"name": "add an user - public endpoint",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -123,7 +129,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://192.168.99.100:8080/login",
+							"raw": "http://192.168.99.100:8080/auth/login",
 							"protocol": "http",
 							"host": [
 								"192",
@@ -133,6 +139,7 @@
 							],
 							"port": "8080",
 							"path": [
+								"auth",
 								"login"
 							]
 						}
