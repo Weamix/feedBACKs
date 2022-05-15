@@ -45,6 +45,8 @@ API : [http://192.168.99.100:8080/][http://192.168.99.100:8080/]
 
 Postman available in directory : [feedBACKs.json](./postman/feedBACKs.json)
 
+[Github board](https://github.com/users/Weamix/projects/1/views/2
+)
 ### Fonctionnement depuis la branche base:
 
 #### Pour lancer le projet
