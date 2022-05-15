@@ -28,8 +28,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
-    /*
-    //Utilité?
+    /* Utilité?
 
     @Override
     public boolean equals(Object o) {

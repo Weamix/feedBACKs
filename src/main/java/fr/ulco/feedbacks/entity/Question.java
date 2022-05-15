@@ -43,7 +43,7 @@ public class Question {
     @ToString.Exclude
     private List<Answer> answers;
 
-    @Override
+/*    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
@@ -54,5 +54,5 @@ public class Question {
     @Override
     public int hashCode() {
         return getClass().hashCode();
-    }
+    }*/
 }

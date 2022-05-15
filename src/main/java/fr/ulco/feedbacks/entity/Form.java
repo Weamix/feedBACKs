@@ -39,7 +39,7 @@ public class Form {
     @ToString.Exclude
     private User user;
 
-    @Override
+/*    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
@@ -50,5 +50,5 @@ public class Form {
     @Override
     public int hashCode() {
         return getClass().hashCode();
-    }
+    }*/
 }

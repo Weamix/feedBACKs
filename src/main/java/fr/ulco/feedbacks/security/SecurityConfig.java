@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /*
         https://jwt.io/
 
-        Ex avec un access token : access_token
+        Ex. avec un access token :
         eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjbGVtZW50Iiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9sb2dpbiIsImV4cCI6MTY1MjU2NjQ1N30.TFOClAKDGUKv_01UqulH16jd7szz8og4Rwe7-sUoT_w
 
          {
@@ -61,17 +61,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // ORDER for RIGHTS is important :
         http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll();
-        http.authorizeRequests().antMatchers("/auth/login/**", "/auth/user/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/auth/user/**").hasAnyAuthority("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/form/**").hasAnyAuthority("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/auth/users/**").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers("/auth/login/", "/auth/user/").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/form/**").hasAnyAuthority("USER","ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/auth/users/**").hasAnyAuthority("ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         // Check Bearer before each request
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
-    // get l'authentication manager de la class extends : WebSecurityConfigurerAdapter
+    // get authentication manager from extended class  : WebSecurityConfigurerAdapter
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

@@ -35,7 +35,7 @@ public class Answer {
     @ToString.Exclude
     private User user;
 
-    @Override
+/*    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
@@ -46,5 +46,5 @@ public class Answer {
     @Override
     public int hashCode() {
         return getClass().hashCode();
-    }
+    }*/
 }

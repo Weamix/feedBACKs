@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 @SpringBootApplication
 public class FeedbacksAppApplication {
+	private static final String ADMIN = "ADMIN";
+	private static final String USER = "USER";
 
 	public static void main(String[] args) {
 		SpringApplication.run(FeedbacksAppApplication.class, args);
@@ -28,16 +30,16 @@ public class FeedbacksAppApplication {
 	@Bean
 	CommandLineRunner run(UserService userService) {
 		return args -> {
-			userService.saveRole(new Role(null, "USER"));
-			userService.saveRole(new Role(null, "ADMIN"));
+			userService.saveRole(new Role(null, USER));
+			userService.saveRole(new Role(null, ADMIN));
 
 			userService.saveUser(new User(null, "weamix", "maxime", "maxime.vitse@decathlon.com", new ArrayList<>()));
 			userService.saveUser(new User(null, "alebas", "lebas", "axel.lebas@decathlon.com", new ArrayList<>()));
 			userService.saveUser(new User(null, "clement", "fasquel", "clement.fasquel@eurotutu.com", new ArrayList<>()));
 
-			userService.addRoleToUser("clement", "USER");
-			userService.addRoleToUser("weamix", "ADMIN");
-			userService.addRoleToUser("alebas", "ADMIN");
+			userService.addRoleToUser("clement", USER);
+			userService.addRoleToUser("weamix", ADMIN);
+			userService.addRoleToUser("alebas", ADMIN);
 		};
 	}
 }

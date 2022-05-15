@@ -9,13 +9,13 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "get all users - need to be login as ADMin and have Bearer (JWT)",
+					"name": "get all users - need to be login as ADMIN and have Bearer (JWT)",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjE2MjU0fQ.goBkGeeGnr64DjzvH3rzbngHFnf8mrZcHhJMoyESuKc",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjI5ODQwfQ.COnknEhEHdbcWT3wW00OzJPZaRcOFpKF5y3EjeZsaNw",
 								"type": "text"
 							}
 						],
@@ -155,7 +155,13 @@
 					"name": "form",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjbGVtZW50Iiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjI5ODE4fQ.yGL83_MJwLX-8zVdxgPlv7fgw1XvMSaQ7i2DmWkzIXA",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://192.168.99.100:8080/form",
 							"protocol": "http",
