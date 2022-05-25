@@ -11,22 +11,23 @@
 				{
 					"name": "get all users - need to be login as ADMIN and have Bearer (JWT)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNTEwODc1fQ.HGta44B5k2pZtnu1rsdhZ5QNIzxGyDtjCw1hUgmW3ak",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjI5ODQwfQ.COnknEhEHdbcWT3wW00OzJPZaRcOFpKF5y3EjeZsaNw",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "http://192.168.99.100:8080/auth/users",
+							"raw": "http://{{ip}}:8080/auth/users",
 							"protocol": "http",
 							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
+								"{{ip}}"
 							],
 							"port": "8080",
 							"path": [
@@ -52,13 +53,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://192.168.99.100:8080/auth/user/",
+							"raw": "http://{{ip}}:8080/auth/user/",
 							"protocol": "http",
 							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
+								"{{ip}}"
 							],
 							"port": "8080",
 							"path": [
@@ -91,13 +89,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://192.168.99.100:8080/auth/login",
+							"raw": "http://{{ip}}:8080/auth/login",
 							"protocol": "http",
 							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
+								"{{ip}}"
 							],
 							"port": "8080",
 							"path": [
@@ -129,13 +124,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://192.168.99.100:8080/auth/login",
+							"raw": "http://{{ip}}:8080/auth/login",
 							"protocol": "http",
 							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
+								"{{ip}}"
 							],
 							"port": "8080",
 							"path": [
@@ -145,11 +137,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "token refresh",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjbGVtZW50IiwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAwOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MjY0Mjk1M30.V972UQRyp97mmWigDmQUnaOiQU7unxyvYGCrNQQUV0I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{ip}}:8080/auth/token/refresh",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "forms",
+			"name": "form",
 			"item": [
 				{
 					"name": "form",
@@ -158,18 +177,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjbGVtZW50Iiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjI5ODE4fQ.yGL83_MJwLX-8zVdxgPlv7fgw1XvMSaQ7i2DmWkzIXA",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjQxNzk1fQ.1AwBQiQG1h_56891YvlUCp9w7bzVqCNfDlxoTZwcv4s",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://192.168.99.100:8080/form",
+							"raw": "http://{{ip}}:8080/form",
 							"protocol": "http",
 							"host": [
-								"192",
-								"168",
-								"99",
-								"100"
+								"{{ip}}"
 							],
 							"port": "8080",
 							"path": [
@@ -178,6 +194,55 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Add form - need to be authenficated",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author\":\"Maxime\",\n    \"questions\":[\n        { \n          \"id\":\"1\",\n          \"message\":\"Que-penses tu de cette endpoint?\"\n        },\n        { \n          \"id\":\"2\",\n          \"message\":\"Que-penses tu de cette api?\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{ip}}:8080/form/",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -193,43 +258,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/form",
+									"raw": "http://{{ip}}:8080/form",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{ip}}"
 									],
-									"port": "3000",
+									"port": "8080",
 									"path": [
 										"form"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Add form",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"author\":\"Maxime\",\n    \"questions\":[\n        { \n          \"id\":\"1\",\n          \"message\":\"Que-penses tu de cette endpoint?\"\n        },\n        { \n          \"id\":\"2\",\n          \"message\":\"Que-penses tu de cette api?\"\n        }\n    ]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:3000/form/",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"form",
-										""
 									]
 								}
 							},
@@ -241,12 +277,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/form/1",
+									"raw": "http://{{ip}}:8080/form/1",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"{{ip}}"
 									],
-									"port": "3000",
+									"port": "8080",
 									"path": [
 										"form",
 										"1"
