@@ -54,7 +54,13 @@ public class FormServiceImpl implements FormService {
         formRepository.save(form);
     }
 
-/*    @Override
+    @Override
+    public List<Form> getAll() {
+        return formRepository.findAll();
+    }
+
+    /*
+    @Override
     public void addForm(FormDto form, String username) {
         User user = userRepository.findByUsername(username);
         formRepository.save(formMapper.mapDtoToForm(form, user));

@@ -15,9 +15,9 @@ public interface FormService {
     List<Form> getAllMyFormsAsAnAuthenticatedUser(Long userId);
     List<Form> getAllMyRequestsAsAnAuthenticatedUser(String username);
     void addAnswer(Long id, Long questionId, Answer answer, Long userId);
+    List<Form> getAll();
 
     /*
-    List<FormDto> getAll();
 
     FormDto getById(Long id);
 

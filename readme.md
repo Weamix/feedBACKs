@@ -46,7 +46,8 @@ API : [http://192.168.99.100:8080/][http://192.168.99.100:8080/]
 Postman available in directory : [feedBACKs.json](./postman/feedBACKs.json)
 
 [Github board](https://github.com/users/Weamix/projects/1/views/2
-)
+) : plus de détails en cliquant sur les cartes du board
+
 ### Fonctionnement depuis la branche base:
 
 #### Pour lancer le projet
@@ -56,8 +57,7 @@ Depuis le dossier racine de l'app :
 # line 3 of dockerfile seems not working :
 mvn install -DskipTests
 
-docker build -t feedbacks.jar .
-docker-compose up
+docker build -t feedbacks.jar . && docker-compose up
 ```
 
 [http://192.168.99.100:8080/swagger-ui/index.html]: http://192.168.99.100:8080/swagger-ui/index.html

@@ -67,14 +67,15 @@ public class FormController {
         this.formService.addAnswer(id, questionId, answer, user.getId());
     }
 
-    /*
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<FormDto>> getAllForms() {
+    public ResponseEntity<List<Form>> getAllForms() {
         return ResponseEntity
                 .ok()
                 .body(formService.getAll());
     }
+
+    /*
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
