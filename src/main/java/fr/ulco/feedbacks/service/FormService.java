@@ -1,5 +1,6 @@
 package fr.ulco.feedbacks.service;
 
+import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
 import fr.ulco.feedbacks.dto.QuestionDto;
 
@@ -17,4 +18,6 @@ public interface FormService {
     void deleteFormById(Long id);
 
     void deleteQuestionById(Long id, Long questionId);
+
+    void addAnswer(Long id, Long questionId, AnswerDto answer);
 }

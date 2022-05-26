@@ -295,7 +295,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Delete question from form",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -311,6 +311,38 @@
 								"1",
 								"question",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add answer to question",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"10/10!!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1/question/1/answer",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1",
+								"question",
+								"1",
+								"answer"
 							]
 						}
 					},
@@ -512,7 +544,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU3MTcwOH0.8Het-sAuHwLTzVwKYaYhB1iWbF3fEp5Hb_oCaSJFGbg",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU3MjU5NX0.ondmIQ5rxZeQaP33IPl198wp_bXq1eB_u9rwjatRFl4",
 				"type": "string"
 			}
 		]

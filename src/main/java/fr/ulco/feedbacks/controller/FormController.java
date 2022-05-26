@@ -1,5 +1,6 @@
 package fr.ulco.feedbacks.controller;
 
+import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
 import fr.ulco.feedbacks.dto.QuestionDto;
 import fr.ulco.feedbacks.service.FormService;
@@ -56,5 +57,11 @@ public class FormController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteQuestion(@PathVariable Long id, @PathVariable Long questionId) {
         this.formService.deleteQuestionById(id, questionId);
+    }
+
+    @PostMapping("/{id}/question/{questionId}/answer")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answer) {
+        this.formService.addAnswer(id, questionId, answer);
     }
 }

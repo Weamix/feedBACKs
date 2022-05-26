@@ -16,6 +16,5 @@ public interface AnswerMapper {
     Answer mapDtoToAnswer(AnswerDto answerDto, Question question, User user);
 
     @Mapping(target = "userId", expression = "java(answer.getUser().getId())")
-    @Mapping(target = "questionId", expression = "java(answer.getQuestion().getQuestionId())")
     AnswerDto mapAnswerToDto(Answer answer);
 }

@@ -1,7 +1,6 @@
 package fr.ulco.feedbacks.mapper;
 
 import fr.ulco.feedbacks.dto.FormDto;
-import fr.ulco.feedbacks.dto.QuestionDto;
 import fr.ulco.feedbacks.entity.Form;
 import fr.ulco.feedbacks.entity.User;
 import org.mapstruct.Mapper;

@@ -1,17 +1,14 @@
 package fr.ulco.feedbacks.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class AnswerDto {
     private Long answerId;
-    private String content;
-    private Long questionId;
+    @NonNull private String content;
     private Long userId;
 }
