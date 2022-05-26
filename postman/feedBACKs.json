@@ -171,7 +171,7 @@
 			"name": "form",
 			"item": [
 				{
-					"name": "form",
+					"name": "get all forms",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -196,7 +196,7 @@
 					"response": []
 				},
 				{
-					"name": "form by id",
+					"name": "get form by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -222,7 +222,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"formName\": \"Feedback annuel\",\n  \"questions\": [\n    {\n      \"content\": \"Comment c'est de travailler avec moi?\",\n      \"createdAt\": \"2022-05-26T10:26:45.774Z\",\n      \"answers\": []\n    },\n    {\n      \"content\": \"Comment jugez vous mes compétences en Java?\",\n      \"createdAt\": \"2022-05-26T10:26:45.774Z\",\n      \"answers\": []\n    }\n  ],\n  \"createdAt\": \"2022-05-26T10:26:45.774Z\",\n  \"updatedAt\": \"2022-05-26T10:26:45.774Z\",\n  \"userId\": 0\n}",
+							"raw": "{\n  \"formName\": \"Feedback mensuel\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -440,7 +440,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU2ODM1NX0.2yslmOeUfMk28CYcTAqKyfH3-kaR3EU697TospPt02A",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU2OTAwNH0.80l9gbL1zu_3qxbd1OjnEtrk9TbUYmsYCJzMvbcayiQ",
 				"type": "string"
 			}
 		]
