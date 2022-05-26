@@ -1,13 +1,14 @@
 package fr.ulco.feedbacks.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
-import org.hibernate.Hibernate;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -27,28 +28,16 @@ public class Form {
     @NotBlank(message = "Please enter a name")
     private String formName;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @NotFound(action = NotFoundAction.IGNORE)
     @ToString.Exclude
     private List<Question> questions;
 
     private Instant createdAt;
     private Instant updatedAt;
 
-    // a form has one author, an author can have many forms
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
-
-/*    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Form form = (Form) o;
-        return formId != null && Objects.equals(formId, form.formId);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }*/
 }

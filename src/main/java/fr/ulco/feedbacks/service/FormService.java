@@ -1,23 +1,13 @@
 package fr.ulco.feedbacks.service;
 
-import fr.ulco.feedbacks.entity.Form;
-import fr.ulco.feedbacks.repository.FormRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import fr.ulco.feedbacks.dto.FormDto;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
-@Service
-@Transactional
-@RequiredArgsConstructor
-public class FormService {
+public interface FormService {
 
-    @Qualifier("memoryData")
-    private final FormRepository formRepository;
+    List<FormDto> getAll();
+    FormDto getById(Long id);
 
-    public Form addForm(Form form) {
-        return formRepository.save(form);
-    }
+    void addForm(FormDto form);
 }

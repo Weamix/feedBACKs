@@ -1,7 +1,9 @@
 package fr.ulco.feedbacks;
 
+import fr.ulco.feedbacks.dto.FormDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.User;
+import fr.ulco.feedbacks.service.FormService;
 import fr.ulco.feedbacks.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.time.Instant;
 import java.util.ArrayList;
 
 @SpringBootApplication
@@ -28,7 +31,7 @@ public class FeedbacksAppApplication {
 
 	//FAKE DATA FOR BDD
 	@Bean
-	CommandLineRunner run(UserService userService) {
+	CommandLineRunner run(UserService userService, FormService formService) {
 		return args -> {
 			userService.saveRole(new Role(null, USER));
 			userService.saveRole(new Role(null, ADMIN));
@@ -40,6 +43,8 @@ public class FeedbacksAppApplication {
 			userService.addRoleToUser("clement", USER);
 			userService.addRoleToUser("weamix", ADMIN);
 			userService.addRoleToUser("alebas", ADMIN);
+
+			formService.addForm(new FormDto("Feedback XXX annuel"));
 		};
 	}
 }
