@@ -9,14 +9,14 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "get all users - need to be login as ADMIN and have Bearer (JWT)",
+					"name": "get all users - need to be login as ADMIN",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNTc3NDc0fQ.ndw133iGE2SD5j409zaDNiXkHXHVDgskATnrWoqWVts",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzYwMzk4MX0.9ono8hv5ID1-swtzPfFEaOIwdzknrMtjraSq73GBic0",
 									"type": "string"
 								}
 							]
@@ -24,14 +24,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{ip}}:8080/auth/users",
+							"raw": "http://{{ip}}:8080/users",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
 							],
 							"port": "8080",
 							"path": [
-								"auth",
 								"users"
 							]
 						}
@@ -48,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"vhaouo\",\n  \"password\": \"q8%c;qd9[.&&[/c8\",\n  \"email\": \"test3@gmail.com\"\n}\n",
+							"raw": "{\n  \"username\": \"gdamien\",\n  \"password\": \"q8%c;qd9[.&&[/c8\",\n  \"email\": \"gdamien@gmail.com\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,7 +70,7 @@
 					"response": []
 				},
 				{
-					"name": "login as a USER",
+					"name": "login as a USER - gdamien (to do after register)",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -80,7 +79,42 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "clement",
+									"value": "gdamien",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "q8%c;qd9[.&&[/c8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as a USER - cfasquel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "cfasquel",
 									"type": "text"
 								},
 								{
@@ -106,7 +140,7 @@
 					"response": []
 				},
 				{
-					"name": "login as an ADMIN",
+					"name": "login as an ADMIN - mvitse",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -115,12 +149,47 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "weamix",
+									"value": "mvitse",
 									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "maxime",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as an ADMIN - alebas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "alebas",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "lebas",
 									"type": "text"
 								}
 							]
@@ -170,17 +239,148 @@
 			]
 		},
 		{
-			"name": "form",
+			"name": "form - need to be authenticated",
 			"item": [
 				{
-					"name": "get all forms",
+					"name": "tofix",
+					"item": [
+						{
+							"name": "get form by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{ip}}:8080/form/1",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"form",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete answer from question",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{ip}}:8080/form/1/question/1/answer/2",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"form",
+										"1",
+										"question",
+										"1",
+										"answer",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete question from form",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{ip}}:8080/form/1/question/1",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"form",
+										"1",
+										"question",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete form",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://{{ip}}:8080/form/2",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"form",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "adding question to a form",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjAwMDQzfQ.qI9ROy7L2rAM4J4QbWraYJJoY6BnaPniLcQvGXlDXdQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\": \"Comment jugez-vous mes compétences en Java?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{ip}}:8080/form/1/question",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"form",
+										"1",
+										"question"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "get all forms - need to be login as ADMIN",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjbGVtZW50Iiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNTc3NDYxfQ.1jxH8xeBZLVgyaYqM86tPZ6YvHzQ6B2i3GOcB6wzm7o",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjA0MDE4fQ.Wo50Bupywy7PdBASVbFoeqWOHD1yQ_5EZEKj_nf6BEI",
 									"type": "string"
 								}
 							]
@@ -194,26 +394,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{ip}}:8080/form",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"form"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get form by id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{ip}}:8080/form/1",
+							"raw": "http://{{ip}}:8080/form/all",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
@@ -221,20 +402,30 @@
 							"port": "8080",
 							"path": [
 								"form",
-								"1"
+								"all"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Add form - need to be authenficated",
+					"name": "create form - body made for login as gdamien or alebas",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZGFtaWVuIiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjA0MDQ4fQ.O8pW9AOwgGEWOXcvkm5fcVvxw8oGjOCXcJDM4-kUqk4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"formName\": \"Feedback mensuel\"\n}",
+							"raw": "{\n  \"formName\": \"Entretien Mars\",\n  \"questions\": [\n    {\n      \"content\": \"Que-penses tu de mon implication ce mois-ci?\",\n      \"answers\": []\n    }\n  ],\n  \"recipients\": [\"cfasquel\",\"mvitse\"]\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -257,85 +448,23 @@
 					"response": []
 				},
 				{
-					"name": "adding question to a form",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"Comment jugez-vous mes compétences en Java?\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{ip}}:8080/form/1/question",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"form",
-								"1",
-								"question"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete form",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{ip}}:8080/form/2",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"form",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete question from form",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://{{ip}}:8080/form/1/question/1",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"form",
-								"1",
-								"question",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "add answer to question",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzYwMzk4MX0.9ono8hv5ID1-swtzPfFEaOIwdzknrMtjraSq73GBic0",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"10/10!!!\"\r\n}",
+							"raw": "{\r\n    \"content\": \"De beau succès, notamment l'application front que tu as faite\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -361,12 +490,28 @@
 					"response": []
 				},
 				{
-					"name": "Delete answer from question",
+					"name": "get form(s) of user authenticated",
 					"request": {
-						"method": "DELETE",
-						"header": [],
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZGFtaWVuIiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjA0MTU4fQ.XwWJDCJPZOcUEj3BeQD5GxxhF76qGNStCTDgj2K312g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjQxNzk1fQ.1AwBQiQG1h_56891YvlUCp9w7bzVqCNfDlxoTZwcv4s",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://{{ip}}:8080/form/1/question/1/answer/2",
+							"raw": "http://{{ip}}:8080/form/",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
@@ -374,11 +519,43 @@
 							"port": "8080",
 							"path": [
 								"form",
-								"1",
-								"question",
-								"1",
-								"answer",
-								"2"
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get requests as an user authenticated",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzYwMzk4MX0.9ono8hv5ID1-swtzPfFEaOIwdzknrMtjraSq73GBic0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjQxNzk1fQ.1AwBQiQG1h_56891YvlUCp9w7bzVqCNfDlxoTZwcv4s"
+							}
+						],
+						"url": {
+							"raw": "http://{{ip}}:8080/form/requests",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"requests"
 							]
 						}
 					},
