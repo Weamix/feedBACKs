@@ -48,7 +48,7 @@ public class FeedbacksAppApplication {
 			userService.addRoleToUser("alebas", RoleName.ADMIN);
 
 			FormDto formFeedback1 = new FormDto("Feedback annuel");
-			formService.addForm(formFeedback1);
+			formService.addForm(formFeedback1, "alebas");
 
 			QuestionDto question11 = new QuestionDto("Comment jugez-vous mes compétences en Java ?");
 			QuestionDto question12 = new QuestionDto("Est-ce que j'ai amélioré mon travail en équipe ?");
@@ -56,7 +56,7 @@ public class FeedbacksAppApplication {
 			formService.addQuestion(1L, question12);
 
 			FormDto formFeedback2 = new FormDto("Feedback mensuel");
-			formService.addForm(formFeedback2);
+			formService.addForm(formFeedback2, "weamix");
 
 			QuestionDto question21 = new QuestionDto("Est-ce que j'ai bien progressé en Java le mois dernier ?");
 			formService.addQuestion(2L, question21);

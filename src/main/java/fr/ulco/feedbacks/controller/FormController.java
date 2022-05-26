@@ -3,11 +3,20 @@ package fr.ulco.feedbacks.controller;
 import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
 import fr.ulco.feedbacks.dto.QuestionDto;
+import fr.ulco.feedbacks.entity.Form;
+import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.service.FormService;
+import fr.ulco.feedbacks.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import javax.sound.midi.Soundbank;
+import java.security.Principal;
+import java.sql.SQLOutput;
 import java.util.List;
 
 @RestController
@@ -16,7 +25,7 @@ import java.util.List;
 public class FormController {
     private final FormService formService;
 
-    @GetMapping
+   @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<FormDto>> getAllForms() {
         return ResponseEntity
@@ -26,9 +35,18 @@ public class FormController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addForm(@RequestBody FormDto form) {
-        this.formService.addForm(form);
+    public void addForm(@RequestBody FormDto form, Authentication authentication) {
+        this.formService.addForm(form, authentication.getName());
     }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<Form>> getAllFormsOfAuthenticatedUser(Authentication authentication) {
+        return ResponseEntity
+                .ok()
+                .body(formService.getAllFormsOfAuthenticatedUser(authentication.getName()));
+    }
+
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

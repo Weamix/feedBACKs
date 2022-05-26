@@ -12,6 +12,8 @@ import fr.ulco.feedbacks.mapper.QuestionMapper;
 import fr.ulco.feedbacks.repository.FormRepository;
 import fr.ulco.feedbacks.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,12 +33,24 @@ public class FormServiceImpl implements FormService {
     private final QuestionMapper questionMapper;
     private final AnswerMapper answerMapper;
 
+    @Override
+    public void addForm(FormDto form, String username) {
+        User user = userRepository.findByUsername(username);
+        formRepository.save(formMapper.mapDtoToForm(form, user));
+    }
+
     @Transactional(readOnly = true)
     @Override
     public List<FormDto> getAll() {
         return formRepository.findAll().stream()
                 .map(formMapper::mapFormToDto)
                 .collect(toList());
+    }
+
+    @Override
+    public List<Form> getAllFormsOfAuthenticatedUser(String username) {
+        User user = userRepository.findByUsername(username);
+        return formRepository.findByUser(user.getId());
     }
 
     @Transactional(readOnly = true)
@@ -48,14 +62,6 @@ public class FormServiceImpl implements FormService {
     @Override
     public void deleteFormById(Long id) {
         formRepository.deleteById(id);
-    }
-
-    @Override
-    public void addForm(FormDto form) {
-        // static username for now
-        // TODO: get user from jwt token?
-        User user = userRepository.findByUsername("weamix");
-        formRepository.save(formMapper.mapDtoToForm(form, user));
     }
 
     @Override
