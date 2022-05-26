@@ -8,7 +8,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @Builder
 public class AnswerDto {
-    private Long answerId;
+    private int answerId;
     @NonNull private String content;
     private Long userId;
 }

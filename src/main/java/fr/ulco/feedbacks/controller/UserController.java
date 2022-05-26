@@ -5,7 +5,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.ulco.feedbacks.dto.SignUpForm;
+import fr.ulco.feedbacks.dto.SignUpDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpForm) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpDto signUpForm) {
         if(userService.isUsernameFree(signUpForm.getUsername())){
             // TODO : avoid generic wild card in response
             return ResponseEntity.badRequest().body("Username is already used");

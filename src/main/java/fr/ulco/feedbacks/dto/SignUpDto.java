@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignUpForm {
+public class SignUpDto {
     @NotBlank
     private String username;
 

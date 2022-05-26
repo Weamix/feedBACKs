@@ -3,6 +3,7 @@ package fr.ulco.feedbacks.service;
 import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
 import fr.ulco.feedbacks.dto.QuestionDto;
+import fr.ulco.feedbacks.entity.Answer;
 import fr.ulco.feedbacks.entity.Form;
 import fr.ulco.feedbacks.entity.User;
 
@@ -10,10 +11,15 @@ import java.util.List;
 
 public interface FormService {
 
-    List<FormDto> getAll();
-    FormDto getById(Long id);
+    Form addForm(Form form);
+    List<Form> getAllMyFormsAsAnAuthenticatedUser(Long userId);
+    List<Form> getAllMyRequestsAsAnAuthenticatedUser(String username);
+    void addAnswer(Long id, Long questionId, Answer answer, Long userId);
 
-    void addForm(FormDto form, String username);
+    /*
+    List<FormDto> getAll();
+
+    FormDto getById(Long id);
 
     void addQuestion(Long id, QuestionDto question);
 
@@ -21,9 +27,6 @@ public interface FormService {
 
     void deleteQuestionById(Long id, Long questionId);
 
-    void addAnswer(Long id, Long questionId, AnswerDto answer);
-
     void deleteAnswer(Long id, Long questionId, Long answerId);
-
-    List<Form> getAllFormsOfAuthenticatedUser(String username);
+    */
 }

@@ -26,18 +26,6 @@ public class Question {
     @NotBlank(message = "Please enter a the question content")
     private String content;
 
-    @JoinColumn(name = "user_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @ToString.Exclude
-    private User user;
-
-    private Instant createdAt;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "form_id")
-    @ToString.Exclude
-    private Form form;
-
     // one question has many answers
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude

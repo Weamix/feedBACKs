@@ -39,15 +39,15 @@ public class FeedbacksAppApplication {
 			roleService.saveRole(new Role(null, RoleName.USER));
 			roleService.saveRole(new Role(null, RoleName.ADMIN));
 
-			userService.saveUser(new User(null, "weamix", "maxime", "maxime.vitse@decathlon.com", new HashSet<>()));
+			userService.saveUser(new User(null, "mvitse", "maxime", "maxime.vitse@decathlon.com", new HashSet<>()));
 			userService.saveUser(new User(null, "alebas", "lebas", "axel.lebas@decathlon.com", new HashSet<>()));
-			userService.saveUser(new User(null, "clement", "fasquel", "clement.fasquel@eurotutu.com", new HashSet<>()));
+			userService.saveUser(new User(null, "cfasquel", "fasquel", "clement.fasquel@eurotutu.com", new HashSet<>()));
 
-			userService.addRoleToUser("clement", RoleName.USER);
-			userService.addRoleToUser("weamix", RoleName.ADMIN);
+			userService.addRoleToUser("cfasquel", RoleName.USER);
+			userService.addRoleToUser("mvitse", RoleName.ADMIN);
 			userService.addRoleToUser("alebas", RoleName.ADMIN);
 
-			FormDto formFeedback1 = new FormDto("Feedback annuel");
+			/*FormDto formFeedback1 = new FormDto("Feedback annuel");
 			formService.addForm(formFeedback1, "alebas");
 
 			QuestionDto question11 = new QuestionDto("Comment jugez-vous mes compétences en Java ?");
@@ -61,7 +61,7 @@ public class FeedbacksAppApplication {
 			QuestionDto question21 = new QuestionDto("Est-ce que j'ai bien progressé en Java le mois dernier ?");
 			formService.addQuestion(2L, question21);
 
-			formService.addAnswer(1L, 1L, new AnswerDto("Très bien"));
+			formService.addAnswer(1L, 1L, new AnswerDto("Très bien"));*/
 		};
 	}
 }
