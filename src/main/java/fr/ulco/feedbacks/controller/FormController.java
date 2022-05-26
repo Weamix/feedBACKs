@@ -16,6 +16,7 @@ public class FormController {
     private final FormService formService;
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<FormDto>> getAllForms() {
         return ResponseEntity
                 .ok()
@@ -29,14 +30,31 @@ public class FormController {
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<FormDto> getFormById(@PathVariable Long id) {
         return ResponseEntity
                 .ok()
                 .body(formService.getById(id));
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> deleteFormById(@PathVariable Long id) {
+        formService.deleteFormById(id);
+        return ResponseEntity
+                .noContent()
+                .build();
+    }
+
     @PostMapping("/{id}/question")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addQuestion(@PathVariable Long id, @RequestBody QuestionDto question) {
         this.formService.addQuestion(id, question);
+    }
+
+    @DeleteMapping("/{id}/question/{questionId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteQuestion(@PathVariable Long id, @PathVariable Long questionId) {
+        this.formService.deleteQuestionById(id, questionId);
     }
 }

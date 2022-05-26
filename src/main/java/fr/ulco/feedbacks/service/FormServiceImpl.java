@@ -40,6 +40,11 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
+    public void deleteFormById(Long id) {
+        formRepository.deleteById(id);
+    }
+
+    @Override
     public void addForm(FormDto form) {
         // TODO: get user from jwt token?
         User user = new User();
@@ -53,6 +58,17 @@ public class FormServiceImpl implements FormService {
         Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
         // add question to form
         form.getQuestions().add(questionMapper.mapDtoToQuestion(question, user, form));
+
+        // update form updatedAt attribute
+        form.setUpdatedAt(Instant.now());
+    }
+
+    @Override
+    public void deleteQuestionById(Long id, Long questionId) {
+        // get form from db
+        Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
+        // remove question from form
+        form.getQuestions().removeIf(question -> question.getQuestionId().equals(questionId));
 
         // update form updatedAt attribute
         form.setUpdatedAt(Instant.now());

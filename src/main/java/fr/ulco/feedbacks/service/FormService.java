@@ -13,4 +13,8 @@ public interface FormService {
     void addForm(FormDto form);
 
     void addQuestion(Long id, QuestionDto question);
+
+    void deleteFormById(Long id);
+
+    void deleteQuestionById(Long id, Long questionId);
 }
