@@ -20,4 +20,6 @@ public interface FormService {
     void deleteQuestionById(Long id, Long questionId);
 
     void addAnswer(Long id, Long questionId, AnswerDto answer);
+
+    void deleteAnswer(Long id, Long questionId, Long answerId);
 }

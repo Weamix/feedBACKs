@@ -1,6 +1,8 @@
 package fr.ulco.feedbacks;
 
+import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
+import fr.ulco.feedbacks.dto.QuestionDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.service.FormService;
@@ -44,7 +46,21 @@ public class FeedbacksAppApplication {
 			userService.addRoleToUser("weamix", ADMIN);
 			userService.addRoleToUser("alebas", ADMIN);
 
-			formService.addForm(new FormDto("Feedback annuel"));
+			FormDto formFeedback1 = new FormDto("Feedback annuel");
+			formService.addForm(formFeedback1);
+
+			QuestionDto question11 = new QuestionDto("Comment jugez-vous mes compétences en Java ?");
+			QuestionDto question12 = new QuestionDto("Est-ce que j'ai amélioré mon travail en équipe ?");
+			formService.addQuestion(1L, question11);
+			formService.addQuestion(1L, question12);
+
+			FormDto formFeedback2 = new FormDto("Feedback mensuel");
+			formService.addForm(formFeedback2);
+
+			QuestionDto question21 = new QuestionDto("Est-ce que j'ai bien progressé en Java le mois dernier ?");
+			formService.addQuestion(2L, question21);
+
+			formService.addAnswer(1L, 1L, new AnswerDto("Très bien"));
 		};
 	}
 }

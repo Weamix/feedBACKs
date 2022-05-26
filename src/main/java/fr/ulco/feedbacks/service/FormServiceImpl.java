@@ -95,4 +95,20 @@ public class FormServiceImpl implements FormService {
         // update form updatedAt attribute
         form.setUpdatedAt(Instant.now());
     }
+
+    public void deleteAnswer(Long id, Long questionId, Long answerId) {
+        // get form from db
+        Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
+        // get question from form
+        Question question = form.getQuestions().stream()
+                .filter(q -> q.getQuestionId().equals(questionId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Question not found"));
+
+        // remove answer from question
+        question.getAnswers().removeIf(answer -> answer.getAnswerId().equals(answerId));
+
+        // update form updatedAt attribute
+        form.setUpdatedAt(Instant.now());
+    }
 }

@@ -64,4 +64,10 @@ public class FormController {
     public void addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answer) {
         this.formService.addAnswer(id, questionId, answer);
     }
+
+    @DeleteMapping("/{id}/question/{questionId}/answer/{answerId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAnswer(@PathVariable Long id, @PathVariable Long questionId, @PathVariable Long answerId) {
+        this.formService.deleteAnswer(id, questionId, answerId);
+    }
 }
