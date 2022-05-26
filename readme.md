@@ -37,7 +37,7 @@ Lombook (Getters/Setters auto généré avec une annotation au début des classe
 - Docker (Java 17 & postgres inclus)
 - Bash/Zsh
 
-### Links
+### Links (attention l'IP présent ici peut varier chez vous)
 
 Swagger : [http://192.168.99.100:8080/swagger-ui/index.html][http://192.168.99.100:8080/swagger-ui/index.html]
 
@@ -53,7 +53,7 @@ Postman available in directory : [feedBACKs.json](./postman/feedBACKs.json)
 
 Depuis le dossier racine de l'app :
 ```
-# line 3 of dockefile seems not working :
+# line 3 of dockerfile seems not working :
 mvn install -DskipTests
 
 docker build -t feedbacks.jar .

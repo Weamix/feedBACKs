@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // ORDER for RIGHTS is important :
         http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll();
         http.authorizeRequests().antMatchers("/auth/login/", "/auth/user/").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/form/**").hasAnyAuthority("USER","ADMIN");
+        http.authorizeRequests().antMatchers( "/form/**").hasAnyAuthority("USER","ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/auth/users/**").hasAnyAuthority("ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);

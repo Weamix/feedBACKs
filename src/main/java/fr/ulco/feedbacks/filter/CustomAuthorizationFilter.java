@@ -31,7 +31,6 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     // JWT asked in body of each endpoint which are not public
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // 1:34:30
 
         if(request.getServletPath().equals("/auth/login") || request.getServletPath().equals("/auth/token/refresh")) {
             filterChain.doFilter(request, response);

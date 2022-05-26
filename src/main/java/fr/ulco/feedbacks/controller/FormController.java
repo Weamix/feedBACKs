@@ -1,10 +1,10 @@
 package fr.ulco.feedbacks.controller;
 
+import fr.ulco.feedbacks.entity.Form;
 import fr.ulco.feedbacks.service.FormService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/form")
@@ -15,5 +15,11 @@ public class FormController {
     @GetMapping
     public String getForm() {
         return "Get form OK";
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addForm(@RequestBody Form form) {
+        this.formService.addForm(form);
     }
 }
