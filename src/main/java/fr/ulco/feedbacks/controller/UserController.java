@@ -43,9 +43,9 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpForm) {
-        if(userService.isEmailFree(signUpForm.getEmail())){
+        if(userService.isUsernameFree(signUpForm.getUsername())){
             // TODO : avoid generic wild card in response
-            return ResponseEntity.badRequest().body("Email is already used");
+            return ResponseEntity.badRequest().body("Username is already used");
         }
 
         User user = new User();
