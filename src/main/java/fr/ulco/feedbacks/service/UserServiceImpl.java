@@ -1,6 +1,7 @@
 package fr.ulco.feedbacks.service;
 
 import fr.ulco.feedbacks.entity.Role;
+import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.repository.RoleRepository;
 import fr.ulco.feedbacks.repository.UserRepository;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     // constructors are initialized with lombook RequiredArgsConstructor
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -34,15 +35,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Role saveRole(Role role) {
-        return roleRepository.save(role);
-    }
-
-    @Override
-    public void addRoleToUser(String username, String roleName) {
-        User user = userRepository.findByUsername(username);
-        Role role = roleRepository.findByName(roleName);
-        user.getRoles().add(role);
+    public Boolean isEmailFree(String email) {
+        return userRepository.existsByEmail(email);
     }
 
     @Override
@@ -55,7 +49,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findAll();
     }
 
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) {
@@ -63,9 +56,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         } else {
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
             user.getRoles().forEach(role ->
-                authorities.add(new SimpleGrantedAuthority(role.getName()))
+                authorities.add(new SimpleGrantedAuthority(role.getName().toString()))
             );
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
         }
+    }
+
+    // ROLE
+
+    @Override
+    public void addRoleToUser(String username, RoleName roleName) {
+        User user = userRepository.findByUsername(username);
+        Role role = roleService.findByName(roleName);
+        user.getRoles().add(role);
     }
 }

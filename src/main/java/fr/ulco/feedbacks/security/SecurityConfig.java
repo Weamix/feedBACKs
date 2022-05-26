@@ -49,21 +49,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     */
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/auth/login");
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        // ORDER for RIGHTS is important :
-        http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll();
-        http.authorizeRequests().antMatchers("/auth/login/", "/auth/user/").permitAll();
-        http.authorizeRequests().antMatchers( "/form/**").hasAnyAuthority("USER","ADMIN");
+        // ORDER for RIGHTS is important - more specific rules need to come first, followed by the more general ones :
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/auth/users/**").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers( "/form/**").hasAnyAuthority("USER","ADMIN");
+        http.authorizeRequests().antMatchers("/auth/**").permitAll();
+        http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         // Check Bearer before each request

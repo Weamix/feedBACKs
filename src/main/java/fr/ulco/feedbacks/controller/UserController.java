@@ -5,8 +5,11 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.ulco.feedbacks.dto.SignUpForm;
 import fr.ulco.feedbacks.entity.Role;
+import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
+import fr.ulco.feedbacks.service.RoleService;
 import fr.ulco.feedbacks.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -16,11 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
@@ -31,22 +32,38 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 @RequiredArgsConstructor
 public class UserController {
     //no need to write constructors with RequiredArgsConstructor
-    //public UserController(UserService userService) { this.userService = userService; }
 
     private final UserService userService;
+    private final RoleService roleService;
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers() {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
-    @PostMapping("/user")
-    public ResponseEntity<User> saveUser(@RequestBody User user) {
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpForm) {
+        if(userService.isEmailFree(signUpForm.getEmail())){
+            // TODO : avoid generic wild card in response
+            return ResponseEntity.badRequest().body("Email is already used");
+        }
+
+        User user = new User();
+
+        Set<Role> roles = new HashSet<>();
+        Role userRole = roleService.findByName(RoleName.USER);
+        roles.add(userRole);
+
+        user.setRoles(roles);
+        user.setUsername(signUpForm.getUsername());
+        user.setEmail(signUpForm.getEmail());
+        user.setPassword(signUpForm.getPassword());
+
         return ResponseEntity.ok().body(userService.saveUser(user));
     }
 
-    @GetMapping("/token/refresh")
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @GetMapping("/refresh")
+    public void refreshJwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             try {
