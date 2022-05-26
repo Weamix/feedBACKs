@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @RequiredArgsConstructor
 @Builder
 public class FormDto {

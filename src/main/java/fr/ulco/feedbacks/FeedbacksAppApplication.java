@@ -44,7 +44,7 @@ public class FeedbacksAppApplication {
 			userService.addRoleToUser("weamix", ADMIN);
 			userService.addRoleToUser("alebas", ADMIN);
 
-			formService.addForm(new FormDto("Feedback XXX annuel"));
+			formService.addForm(new FormDto("Feedback annuel"));
 		};
 	}
 }
