@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b6150509-ce03-4f03-97aa-37bca5a4be24",
+		"_postman_id": "07651b8f-5ada-49e6-9675-f7063474c5ce",
 		"name": "feedBACKs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU2NzAxM30.oAlcEBUwB81F0j8_1CYPOQyCelQ5aOfxFgr7Xbw7-aY",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNTc3NDc0fQ.ndw133iGE2SD5j409zaDNiXkHXHVDgskATnrWoqWVts",
 									"type": "string"
 								}
 							]
@@ -39,13 +39,16 @@
 					"response": []
 				},
 				{
-					"name": "add an user - public endpoint",
+					"name": "register an user - public endpoint",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"email\": \"string\",\n  \"roles\": [\n    {\n      \"id\": 1,\n      \"name\": \"USER\"\n    }\n  ]\n}\n\n//  \"id\": 4,",
+							"raw": "{\n  \"username\": \"vhaouo\",\n  \"password\": \"q8%c;qd9[.&&[/c8\",\n  \"email\": \"test3@gmail.com\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -53,7 +56,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{ip}}:8080/auth/user/",
+							"raw": "http://{{ip}}:8080/auth/signup",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
@@ -61,8 +64,7 @@
 							"port": "8080",
 							"path": [
 								"auth",
-								"user",
-								""
+								"signup"
 							]
 						}
 					},
@@ -173,6 +175,16 @@
 				{
 					"name": "get all forms",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjbGVtZW50Iiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNTc3NDYxfQ.1jxH8xeBZLVgyaYqM86tPZ6YvHzQ6B2i3GOcB6wzm7o",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
