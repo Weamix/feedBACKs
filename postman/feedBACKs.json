@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6b76a515-46fe-4283-9792-e000398fa389",
+		"_postman_id": "b6150509-ce03-4f03-97aa-37bca5a4be24",
 		"name": "feedBACKs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNTEwODc1fQ.HGta44B5k2pZtnu1rsdhZ5QNIzxGyDtjCw1hUgmW3ak",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU2NzAxM30.oAlcEBUwB81F0j8_1CYPOQyCelQ5aOfxFgr7Xbw7-aY",
 									"type": "string"
 								}
 							]
@@ -171,7 +171,7 @@
 			"name": "form",
 			"item": [
 				{
-					"name": "form",
+					"name": "get all forms",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -196,13 +196,33 @@
 					"response": []
 				},
 				{
+					"name": "get form by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Add form - need to be authenficated",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"author\":\"Maxime\",\n    \"questions\":[\n        { \n          \"id\":\"1\",\n          \"message\":\"Que-penses tu de cette endpoint?\"\n        },\n        { \n          \"id\":\"2\",\n          \"message\":\"Que-penses tu de cette api?\"\n        }\n    ]\n}",
+							"raw": "{\n  \"formName\": \"Feedback mensuel\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -219,6 +239,134 @@
 							"path": [
 								"form",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "adding question to a form",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Comment jugez-vous mes compétences en Java?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1/question",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1",
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete form",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/form/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete question from form",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1/question/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1",
+								"question",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add answer to question",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"10/10!!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1/question/1/answer",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1",
+								"question",
+								"1",
+								"answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete answer from question",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1/question/1/answer/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1",
+								"question",
+								"1",
+								"answer",
+								"2"
 							]
 						}
 					},
@@ -413,6 +561,42 @@
 					]
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU3NDk1N30.tpXHer1vgh6f_yOsEiKBF7YSj63UpQwKz2NXVuIrkv8",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ip",
+			"value": "localhost"
 		}
 	]
 }

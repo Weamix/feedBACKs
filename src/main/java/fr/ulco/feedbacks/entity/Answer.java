@@ -24,27 +24,14 @@ public class Answer {
     @NotBlank(message = "Please enter a the question content")
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id")
     @ToString.Exclude
     private Question question;
 
     // an answer can have one author, one author can have many answers
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
-
-/*    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Answer answer = (Answer) o;
-        return answerId != null && Objects.equals(answerId, answer.answerId);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }*/
 }

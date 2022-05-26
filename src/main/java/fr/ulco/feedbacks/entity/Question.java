@@ -27,32 +27,19 @@ public class Question {
     private String content;
 
     @JoinColumn(name = "user_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private User user;
 
     private Instant createdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "form_id")
     @ToString.Exclude
     private Form form;
 
     // one question has many answers
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Answer> answers;
-
-/*    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Question question = (Question) o;
-        return questionId != null && Objects.equals(questionId, question.questionId);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }*/
 }
