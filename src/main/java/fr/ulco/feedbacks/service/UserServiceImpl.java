@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Boolean isEmailFree(String email) {
-        return userRepository.existsByEmail(email);
+    public Boolean isUsernameFree(String username) {
+        return userRepository.existsByUsername(username);
     }
 
     @Override
