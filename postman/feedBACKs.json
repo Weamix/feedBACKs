@@ -347,6 +347,30 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete answer from question",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1/question/1/answer/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1",
+								"question",
+								"1",
+								"answer",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"event": [
@@ -544,7 +568,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU3MjU5NX0.ondmIQ5rxZeQaP33IPl198wp_bXq1eB_u9rwjatRFl4",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzU3NDk1N30.tpXHer1vgh6f_yOsEiKBF7YSj63UpQwKz2NXVuIrkv8",
 				"type": "string"
 			}
 		]
