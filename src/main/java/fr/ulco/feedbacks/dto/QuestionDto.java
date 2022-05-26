@@ -1,20 +1,19 @@
 package fr.ulco.feedbacks.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class QuestionDto {
     private Long questionId;
-    private String content;
-    private Instant createdAt;
-    private List<AnswerDto> answers;
+    @NonNull private String content;
+    @Builder.Default private Instant createdAt = Instant.now();
+    @Builder.Default private List<AnswerDto> answers = new ArrayList<>();
 }

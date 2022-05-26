@@ -1,6 +1,7 @@
 package fr.ulco.feedbacks.controller;
 
 import fr.ulco.feedbacks.dto.FormDto;
+import fr.ulco.feedbacks.dto.QuestionDto;
 import fr.ulco.feedbacks.service.FormService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,12 @@ public class FormController {
                 .body(formService.getAll());
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addForm(@RequestBody FormDto form) {
+        this.formService.addForm(form);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<FormDto> getFormById(@PathVariable Long id) {
         return ResponseEntity
@@ -28,9 +35,8 @@ public class FormController {
                 .body(formService.getById(id));
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addForm(@RequestBody FormDto form) {
-        this.formService.addForm(form);
+    @PostMapping("/{id}/question")
+    public void addQuestion(@PathVariable Long id, @RequestBody QuestionDto question) {
+        this.formService.addQuestion(id, question);
     }
 }
