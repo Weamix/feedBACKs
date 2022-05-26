@@ -10,6 +10,7 @@ import fr.ulco.feedbacks.mapper.AnswerMapper;
 import fr.ulco.feedbacks.mapper.FormMapper;
 import fr.ulco.feedbacks.mapper.QuestionMapper;
 import fr.ulco.feedbacks.repository.FormRepository;
+import fr.ulco.feedbacks.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ import static java.util.stream.Collectors.toList;
 public class FormServiceImpl implements FormService {
 
     private final FormRepository formRepository;
+    private final UserRepository userRepository;
     private final FormMapper formMapper;
     private final QuestionMapper questionMapper;
     private final AnswerMapper answerMapper;
@@ -50,15 +52,17 @@ public class FormServiceImpl implements FormService {
 
     @Override
     public void addForm(FormDto form) {
+        // static username for now
         // TODO: get user from jwt token?
-        User user = new User();
+        User user = userRepository.findByUsername("weamix");
         formRepository.save(formMapper.mapDtoToForm(form, user));
     }
 
     @Override
     public void addQuestion(Long id, QuestionDto question) {
-        // get form from db
-        User user = new User();
+        // static username for now
+        // TODO: get user from jwt token?
+        User user = userRepository.findByUsername("weamix");
         Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
         // add question to form
         form.getQuestions().add(questionMapper.mapDtoToQuestion(question, user, form));
@@ -88,7 +92,9 @@ public class FormServiceImpl implements FormService {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Question not found"));
 
-        User user = new User();
+        // static username for now
+        // TODO: get user from jwt token?
+        User user = userRepository.findByUsername("alebas");
         // add answer to question
         question.getAnswers().add(answerMapper.mapDtoToAnswer(answer, question, user));
 
