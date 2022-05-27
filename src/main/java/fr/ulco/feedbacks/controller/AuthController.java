@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 
+@CrossOrigin(originPatterns = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor

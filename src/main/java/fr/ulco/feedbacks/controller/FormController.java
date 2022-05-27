@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(originPatterns = "*", maxAge = 3600)
 @RequestMapping("/form")
 @RestController
 @RequiredArgsConstructor
