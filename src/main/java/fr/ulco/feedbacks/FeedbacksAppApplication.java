@@ -4,6 +4,7 @@ package fr.ulco.feedbacks;
 import fr.ulco.feedbacks.dto.SignUpDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.RoleName;
+import fr.ulco.feedbacks.service.AuthService;
 import fr.ulco.feedbacks.service.FormService;
 import fr.ulco.feedbacks.service.RoleService;
 import fr.ulco.feedbacks.service.UserService;
@@ -28,14 +29,14 @@ public class FeedbacksAppApplication {
 
 	//FAKE DATA FOR BDD
 	@Bean
-	CommandLineRunner run(UserService userService, FormService formService, RoleService roleService) {
+	CommandLineRunner run(UserService userService, RoleService roleService, AuthService authService, FormService formService) {
 		return args -> {
 			roleService.saveRole(new Role(null, RoleName.USER));
 			roleService.saveRole(new Role(null, RoleName.ADMIN));
 
-			userService.saveUser(new SignUpDto("mvitse", "maxime", "maxime.vitse@decathlon.com"));
-			userService.saveUser(new SignUpDto("alebas", "lebas", "axel.lebas@decathlon.com"));
-			userService.saveUser(new SignUpDto("cfasquel", "fasquel", "clement.fasquel@eurotutu.com"));
+			authService.saveUser(new SignUpDto("mvitse", "maxime", "maxime.vitse@decathlon.com"));
+			authService.saveUser(new SignUpDto("alebas", "lebas", "axel.lebas@decathlon.com"));
+			authService.saveUser(new SignUpDto("cfasquel", "fasquel", "clement.fasquel@eurotutu.com"));
 
 			userService.addRoleToUser("cfasquel", RoleName.USER);
 			userService.addRoleToUser("mvitse", RoleName.ADMIN);

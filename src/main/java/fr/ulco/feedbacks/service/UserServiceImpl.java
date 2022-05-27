@@ -1,19 +1,15 @@
 package fr.ulco.feedbacks.service;
 
-import fr.ulco.feedbacks.dto.SignUpDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.*;
 
@@ -25,24 +21,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     // constructors are initialized with lombook RequiredArgsConstructor
     private final UserRepository userRepository;
     private final RoleService roleService;
-    private final PasswordEncoder passwordEncoder;
 
-    @Override
-    public User saveUser(SignUpDto signUpDto) {
-        User user = new User();
-
-        Set<Role> roles = new HashSet<>();
-        Role userRole = roleService.findByName(RoleName.USER);
-        roles.add(userRole);
-
-        user.setRoles(roles);
-        user.setUsername(signUpDto.getUsername());
-        user.setEmail(signUpDto.getEmail());
-        user.setPassword(signUpDto.getPassword());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        return userRepository.save(user);
-    }
+    // USER
 
     @Override
     public Boolean isUsernameFree(String username) {
@@ -59,15 +39,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findAll();
     }
 
-    public User getAuthenticatedUser(){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username;
-        if (principal instanceof UserDetails){
-            username = ((UserDetails) principal).getUsername();
-        } else {
-            username = principal.toString();
+    @Override
+    public List<String> getAllUsernames() {
+        List<String> usernames = new ArrayList<>();
+        for (User u: getUsers()) {
+            usernames.add(u.getUsername());
         }
-        return getUser(username);
+        return usernames;
     }
 
     // important for security

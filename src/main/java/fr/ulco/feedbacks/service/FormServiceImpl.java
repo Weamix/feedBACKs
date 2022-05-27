@@ -22,11 +22,12 @@ public class FormServiceImpl implements FormService {
 
     private final FormRepository formRepository;
     private final UserService userService;
+    private final AuthService authService;
 
     @Override
     public Form addForm(FormDto formDto) {
         Form form = new Form();
-        form.setUserId(userService.getAuthenticatedUser().getId());
+        form.setUserId(authService.getAuthenticatedUser().getId());
         form.setFormName(formDto.getFormName());
         form.setQuestions(formDto.getQuestions());
         form.setRecipients(formDto.getRecipients());
@@ -35,18 +36,18 @@ public class FormServiceImpl implements FormService {
 
     @Override
     public List<Form> getAllMyFormsAsAnAuthenticatedUser() {
-        return formRepository.findByUserId(userService.getAuthenticatedUser().getId());
+        return formRepository.findByUserId(authService.getAuthenticatedUser().getId());
     }
 
     @Override
     public List<Form> getAllMyRequestsAsAnAuthenticatedUser() {
         // hide answers of other recipient
-        return formRepository.findAll().stream().filter(form -> form.getRecipients().contains(userService.getAuthenticatedUser().getUsername())).collect(Collectors.toList());
+        return formRepository.findAll().stream().filter(form -> form.getRecipients().contains(authService.getAuthenticatedUser().getUsername())).collect(Collectors.toList());
     }
 
     @Override
     public void addAnswer(Long formId, Long questionId, AnswerDto answerDto) throws Exception {
-        User user = userService.getAuthenticatedUser();
+        User user = authService.getAuthenticatedUser();
         Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
 
         List<String> recipients = form.getRecipients();
@@ -83,7 +84,7 @@ public class FormServiceImpl implements FormService {
     @Override
     public void deleteFormById(Long formId) throws Exception {
         Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
-        if(!Objects.equals(form.getUserId(), userService.getAuthenticatedUser().getId())){
+        if(!Objects.equals(form.getUserId(), authService.getAuthenticatedUser().getId())){
             throw new Exception("You don't own this form");
         } else {
             formRepository.deleteById(formId);
@@ -93,7 +94,7 @@ public class FormServiceImpl implements FormService {
     @Override
     public Form getById(Long formId) throws Exception {
         Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
-        if(!Objects.equals(form.getUserId(), userService.getAuthenticatedUser().getId())){
+        if(!Objects.equals(form.getUserId(), authService.getAuthenticatedUser().getId())){
             throw new Exception("You don't own this form");
         } else {
             return form;

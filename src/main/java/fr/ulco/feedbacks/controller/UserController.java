@@ -21,4 +21,9 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
+    @GetMapping("/usernames")
+    public ResponseEntity<List<String>> getAllUsernames() {
+        return ResponseEntity.ok().body(userService.getAllUsernames());
+    }
+
 }
