@@ -42,7 +42,7 @@ public class FormController {
 
     @PostMapping("/{id}/question/{questionId}/answer")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto) {
+    public void addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto) throws Exception {
         this.formService.addAnswer(id, questionId, answerDto);
     }
 
@@ -55,18 +55,11 @@ public class FormController {
     }
 
     @DeleteMapping("/all")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteAllForms() {
+    public ResponseEntity<Void> deleteAllForms() {
         formService.deleteAllForms();
-    }
-
-    /*
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<FormDto> getFormById(@PathVariable Long id) {
         return ResponseEntity
-                .ok()
-                .body(formService.getById(id));
+                .noContent()
+                .build();
     }
 
     @DeleteMapping("/{id}")
@@ -77,6 +70,16 @@ public class FormController {
                 .noContent()
                 .build();
     }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Form> getFormById(@PathVariable Long id) {
+        return ResponseEntity
+                .ok()
+                .body(formService.getById(id));
+    }
+
+    /*
 
     @PostMapping("/{id}/question")
     @ResponseStatus(HttpStatus.CREATED)

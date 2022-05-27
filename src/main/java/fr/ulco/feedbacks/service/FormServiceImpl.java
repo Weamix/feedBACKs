@@ -5,6 +5,7 @@ import fr.ulco.feedbacks.dto.FormDto;
 import fr.ulco.feedbacks.entity.Answer;
 import fr.ulco.feedbacks.entity.Form;
 import fr.ulco.feedbacks.entity.Question;
+import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.repository.FormRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,25 +43,29 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public void addAnswer(Long id, Long questionId, AnswerDto answerDto) {
-        Answer answer = new Answer();
-        answer.setUserId(userService.getAuthenticatedUser().getId());
-        answer.setContent(answerDto.getContent());
-        answer.setAnswerId(answerDto.getAnswerId());
+    public void addAnswer(Long formId, Long questionId, AnswerDto answerDto) throws Exception {
+        User user = userService.getAuthenticatedUser();
+        Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
 
-        // get form from db
-        Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
-        //formRepository.findAll().stream().filter(f -> f.getRecipients().contains(username)).findAny().orElseThrow(() -> new IllegalArgumentException("You are not invited to answer to this form"));
-        // get question from form
-        Question question = form.getQuestions().stream()
-                .filter(q -> q.getQuestionId().equals(questionId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Question not found"));
+        List<String> recipients = form.getRecipients();
+        if(recipients.contains(user.getUsername()) && !user.getId().equals(form.getUserId())){
+            Answer answer = new Answer();
+            answer.setUserId(user.getId());
+            answer.setContent(answerDto.getContent());
+            answer.setAnswerId(answerDto.getAnswerId());
 
-        // add answer to question
-        question.getAnswers().add(answer.getAnswerId(), answer);
 
-        formRepository.save(form);
+            Question question = form.getQuestions().stream()
+                    .filter(q -> q.getQuestionId().equals(questionId))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("Question not found"));
+
+            question.getAnswers().add(answer.getAnswerId(), answer);
+
+            formRepository.save(form);
+        } else {
+            throw new Exception("You are not invited to answer this form");
+        }
     }
 
     @Override
@@ -73,38 +78,17 @@ public class FormServiceImpl implements FormService {
         formRepository.deleteAll();
     }
 
-    /*
-    @Override
-    public void addForm(FormDto form, String username) {
-        User user = userRepository.findByUsername(username);
-        formRepository.save(formMapper.mapDtoToForm(form, user));
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public List<FormDto> getAll() {
-        return formRepository.findAll().stream()
-                .map(formMapper::mapFormToDto)
-                .collect(toList());
-    }
-
-    @Override
-    public List<Form> getAllFormsOfAuthenticatedUser(String username) {
-        User user = userRepository.findByUsername(username);
-        return formRepository.findByUser(user.getId());
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public FormDto getById(Long id) {
-        return formMapper.mapFormToDto(formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found")));
-    }
-
     @Override
     public void deleteFormById(Long id) {
         formRepository.deleteById(id);
     }
 
+    @Override
+    public Form getById(Long id) {
+        return formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
+    }
+
+    /*
     @Override
     public void addQuestion(Long id, QuestionDto question) {
         // static username for now

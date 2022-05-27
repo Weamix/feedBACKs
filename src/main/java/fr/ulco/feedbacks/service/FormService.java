@@ -11,18 +11,20 @@ public interface FormService {
     Form addForm(FormDto formDto);
     List<Form> getAllMyFormsAsAnAuthenticatedUser();
     List<Form> getAllMyRequestsAsAnAuthenticatedUser();
-    void addAnswer(Long id, Long questionId, AnswerDto answerDto);
+    void addAnswer(Long id, Long questionId, AnswerDto answerDto) throws Exception;
 
     List<Form> getAllForms();
     void deleteAllForms();
 
-    /*
+    void deleteFormById(Long id);
+    Form getById(Long id);
 
+
+
+    /*
     FormDto getById(Long id);
 
     void addQuestion(Long id, QuestionDto question);
-
-    void deleteFormById(Long id);
 
     void deleteQuestionById(Long id, Long questionId);
 

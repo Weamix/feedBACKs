@@ -1,5 +1,7 @@
 package fr.ulco.feedbacks.security;
 
+import fr.ulco.feedbacks.entity.Role;
+import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.filter.CustomAuthenticationFilter;
 import fr.ulco.feedbacks.filter.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
@@ -66,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // ORDER for RIGHTS is important - more specific rules need to come first, followed by the more general ones :
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/auth/users/**").hasAnyAuthority("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/form/all/**").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers("/form/all/**").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers( "/form/**").hasAnyAuthority("USER","ADMIN");
         http.authorizeRequests().antMatchers("/auth/**").permitAll();
         http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll();
