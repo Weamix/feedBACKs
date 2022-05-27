@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // ORDER for RIGHTS is important - more specific rules need to come first, followed by the more general ones :
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/users/**").hasAnyAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/users/").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers("/form/all/**").hasAnyAuthority("ADMIN");
         http.authorizeRequests().antMatchers( "/form/**").hasAnyAuthority("USER","ADMIN");
         http.authorizeRequests().antMatchers("/auth/**").permitAll();

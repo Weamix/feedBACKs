@@ -188,6 +188,16 @@
 				{
 					"name": "token refresh",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3MDIwNn0.ZRoFmDn8A0Ix_EJjUsm_M-0DzMtOgiUXRSVL2ZXkiMo",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -217,7 +227,7 @@
 			"name": "form - need to be authenticated",
 			"item": [
 				{
-					"name": "tofix",
+					"name": "potential future endpoints",
 					"item": [
 						{
 							"name": "Delete answer from question",
@@ -305,6 +315,26 @@
 							},
 							"response": []
 						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
 					]
 				},
 				{
@@ -318,7 +348,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3MDIwNn0.ZRoFmDn8A0Ix_EJjUsm_M-0DzMtOgiUXRSVL2ZXkiMo",
 											"type": "string"
 										}
 									]
@@ -354,7 +384,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZGFtaWVuIiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjcwMjQyfQ.xkKBdop22aiBTyU2bQwUKla8VKGK4rI94D13AowUJoQ",
 											"type": "string"
 										}
 									]
@@ -385,14 +415,14 @@
 					]
 				},
 				{
-					"name": "create form - body made for login as gdamien or alebas",
+					"name": "create form - body made for login as gdamien or mvitse",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3NjU3Mn0.lqaKbBQIO61fHsmX5PGj7ec9Bkaa2yg5SY7eRVzntWI",
 									"type": "string"
 								}
 							]
@@ -431,7 +461,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3NjYwNn0.l1Wa6SmDNa0x530VZDOFKhvIan68PCS4Kb4TdChcmQ4",
 									"type": "string"
 								}
 							]
@@ -473,7 +503,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3NjU3Mn0.lqaKbBQIO61fHsmX5PGj7ec9Bkaa2yg5SY7eRVzntWI",
 									"type": "string"
 								}
 							]
@@ -509,7 +539,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGViYXMiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzY2NH0.cVyQL_mioxs9rNM-3yRgtzwT42sUvJcuRHXiTt-iB94",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3NjYwNn0.l1Wa6SmDNa0x530VZDOFKhvIan68PCS4Kb4TdChcmQ4",
 									"type": "string"
 								}
 							]
@@ -620,174 +650,6 @@
 			]
 		},
 		{
-			"name": "old - requests",
-			"item": [
-				{
-					"name": "form",
-					"item": [
-						{
-							"name": "Get all forms",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://{{ip}}:8080/form",
-									"protocol": "http",
-									"host": [
-										"{{ip}}"
-									],
-									"port": "8080",
-									"path": [
-										"form"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get form by id",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://{{ip}}:8080/form/1",
-									"protocol": "http",
-									"host": [
-										"{{ip}}"
-									],
-									"port": "8080",
-									"path": [
-										"form",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "questions",
-					"item": [
-						{
-							"name": "questions",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": ""
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get answers by question id",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:3000/form/1/answers/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"form",
-										"1",
-										"answers",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get all questions",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:3000/question",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"question"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Add answer for question id",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"author\": \"string\",\n  \"id\": 0,\n  \"message\": \"string\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:3000/form/1/question/1/answer/",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"form",
-										"1",
-										"question",
-										"1",
-										"answer",
-										""
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Add question",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\":\"2\",\n    \"message\":\"Que-penses tu de cette endpoint?\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:3000/question/",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"question",
-										""
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
 			"name": "users",
 			"item": [
 				{
@@ -798,7 +660,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZGFtaWVuIiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjcwMjQyfQ.xkKBdop22aiBTyU2bQwUKla8VKGK4rI94D13AowUJoQ",
 									"type": "string"
 								}
 							]
