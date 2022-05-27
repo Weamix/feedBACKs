@@ -85,20 +85,24 @@ public class FormController {
         this.formService.editAnswer(id, questionId, answerDto);
     }
 
-    /*
+    // PUT Question
 
+    /*
+    // Ajouter une question à posteriori ne fait pas sens selon moi.
     @PostMapping("/{id}/question")
     @ResponseStatus(HttpStatus.CREATED)
     public void addQuestion(@PathVariable Long id, @RequestBody QuestionDto question) {
         this.formService.addQuestion(id, question);
     }
 
+    // Idem pr supprimer une question
     @DeleteMapping("/{id}/question/{questionId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteQuestion(@PathVariable Long id, @PathVariable Long questionId) {
         this.formService.deleteQuestionById(id, questionId);
     }
 
+    // Supprimer une réponse n'est pas juste, pouvoir la modifir oui (put)
     @DeleteMapping("/{id}/question/{questionId}/answer/{answerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAnswer(@PathVariable Long id, @PathVariable Long questionId, @PathVariable Long answerId) {

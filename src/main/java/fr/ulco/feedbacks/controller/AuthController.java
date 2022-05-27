@@ -1,6 +1,6 @@
 package fr.ulco.feedbacks.controller;
 
-import fr.ulco.feedbacks.dto.SignUpDto;
+import fr.ulco.feedbacks.dto.UserDto;
 import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -20,15 +20,17 @@ public class AuthController {
     //no need to write constructors with RequiredArgsConstructor
     private final AuthService authService;
 
-    // Login avec Spring Security : géré dans les Filter + SecurityConfig
+    // POST Login avec Spring Security : géré dans les Filter + SecurityConfig
 
     @PostMapping("/signup")
-    public ResponseEntity<User> registerUser(@Valid @RequestBody SignUpDto signUpDto) throws Exception {
-        return ResponseEntity.ok().body(authService.saveUser(signUpDto));
+    public ResponseEntity<User> registerUser(@Valid @RequestBody UserDto userDto) throws Exception {
+        return ResponseEntity.ok().body(authService.saveUser(userDto));
     }
 
     @GetMapping("/refresh")
     public void refreshJwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         authService.refreshJWTofUser(request, response);
     }
+
+    // Au vu du contexte du controller PUT, DELETE ne font pas sens ici : DELETE SESSION pour le logout?
 }

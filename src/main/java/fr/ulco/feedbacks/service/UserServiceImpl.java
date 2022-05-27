@@ -1,5 +1,6 @@
 package fr.ulco.feedbacks.service;
 
+import fr.ulco.feedbacks.dto.UserDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
@@ -69,5 +70,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = userRepository.findByUsername(username);
         Role role = roleService.findByName(roleName);
         user.getRoles().add(role);
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateUserById(Long id, UserDto userDto) {
+        userRepository.findById(id).map(user -> {
+            user.setUsername(userDto.getUsername());
+            userDto.setEmail(userDto.getEmail());
+            userDto.setPassword(userDto.getPassword());
+            return userRepository.save(user);
+        });
+
     }
 }

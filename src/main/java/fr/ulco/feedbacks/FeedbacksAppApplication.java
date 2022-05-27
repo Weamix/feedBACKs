@@ -1,7 +1,7 @@
 package fr.ulco.feedbacks;
 
 
-import fr.ulco.feedbacks.dto.SignUpDto;
+import fr.ulco.feedbacks.dto.UserDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.service.AuthService;
@@ -34,9 +34,9 @@ public class FeedbacksAppApplication {
 			roleService.saveRole(new Role(null, RoleName.USER));
 			roleService.saveRole(new Role(null, RoleName.ADMIN));
 
-			authService.saveUser(new SignUpDto("mvitse", "maxime", "maxime.vitse@decathlon.com"));
-			authService.saveUser(new SignUpDto("alebas", "lebas", "axel.lebas@decathlon.com"));
-			authService.saveUser(new SignUpDto("cfasquel", "fasquel", "clement.fasquel@eurotutu.com"));
+			authService.saveUser(new UserDto("mvitse", "maxime", "maxime.vitse@decathlon.com"));
+			authService.saveUser(new UserDto("alebas", "lebas", "axel.lebas@decathlon.com"));
+			authService.saveUser(new UserDto("cfasquel", "fasquel", "clement.fasquel@eurotutu.com"));
 
 			userService.addRoleToUser("cfasquel", RoleName.USER);
 			userService.addRoleToUser("mvitse", RoleName.ADMIN);

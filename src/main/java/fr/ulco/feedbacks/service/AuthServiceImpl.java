@@ -5,7 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.ulco.feedbacks.dto.SignUpDto;
+import fr.ulco.feedbacks.dto.UserDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
@@ -39,8 +39,8 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
 
     @Override
-    public User saveUser(SignUpDto signUpDto) throws Exception {
-        if (userService.isUsernameFree(signUpDto.getUsername())) {
+    public User saveUser(UserDto userDto) throws Exception {
+        if (userService.isUsernameFree(userDto.getUsername())) {
             throw new Exception("Username is already used");
         } else {
             User user = new User();
@@ -50,9 +50,9 @@ public class AuthServiceImpl implements AuthService {
             roles.add(userRole);
 
             user.setRoles(roles);
-            user.setUsername(signUpDto.getUsername());
-            user.setEmail(signUpDto.getEmail());
-            user.setPassword(signUpDto.getPassword());
+            user.setUsername(userDto.getUsername());
+            user.setEmail(userDto.getEmail());
+            user.setPassword(userDto.getPassword());
             user.setPassword(passwordEncoder.encode(user.getPassword()));
 
             return userRepository.save(user);
