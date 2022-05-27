@@ -30,7 +30,7 @@ public class FeedbacksAppApplication {
 	@Bean
 	CommandLineRunner run(UserService userService, FormService formService, RoleService roleService) {
 		return args -> {
-/*			roleService.saveRole(new Role(null, RoleName.USER));
+			roleService.saveRole(new Role(null, RoleName.USER));
 			roleService.saveRole(new Role(null, RoleName.ADMIN));
 
 			userService.saveUser(new SignUpDto("mvitse", "maxime", "maxime.vitse@decathlon.com"));
@@ -39,7 +39,7 @@ public class FeedbacksAppApplication {
 
 			userService.addRoleToUser("cfasquel", RoleName.USER);
 			userService.addRoleToUser("mvitse", RoleName.ADMIN);
-			userService.addRoleToUser("alebas", RoleName.ADMIN);*/
+			userService.addRoleToUser("alebas", RoleName.ADMIN);
 
 			/*FormDto formFeedback1 = new FormDto("Feedback annuel");
 			formService.addForm(formFeedback1, "alebas");
