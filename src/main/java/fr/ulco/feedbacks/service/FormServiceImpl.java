@@ -9,6 +9,9 @@ import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.repository.FormRepository;
 import fr.ulco.feedbacks.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,24 +24,35 @@ import java.util.stream.Collectors;
 public class FormServiceImpl implements FormService {
 
     private final FormRepository formRepository;
+    private final UserService userService;
 
     @Override
-    public Form addForm(Form form) {
+    public Form addForm(FormDto formDto) {
+        Form form = new Form();
+        form.setUserId(userService.getAuthenticatedUser().getId());
+        form.setFormName(formDto.getFormName());
+        form.setQuestions(formDto.getQuestions());
+        form.setRecipients(formDto.getRecipients());
         return formRepository.save(form);
     }
 
     @Override
-    public List<Form> getAllMyFormsAsAnAuthenticatedUser(Long userId) {
-        return formRepository.findByUserId(userId);
+    public List<Form> getAllMyFormsAsAnAuthenticatedUser() {
+        return formRepository.findByUserId(userService.getAuthenticatedUser().getId());
     }
 
     @Override
-    public List<Form> getAllMyRequestsAsAnAuthenticatedUser(String username) {
-        return formRepository.findAll().stream().filter(form -> form.getRecipients().contains(username)).collect(Collectors.toList());
+    public List<Form> getAllMyRequestsAsAnAuthenticatedUser() {
+        return formRepository.findAll().stream().filter(form -> form.getRecipients().contains(userService.getAuthenticatedUser().getUsername())).collect(Collectors.toList());
     }
 
     @Override
-    public void addAnswer(Long id, Long questionId, Answer answer, Long userId) {
+    public void addAnswer(Long id, Long questionId, AnswerDto answerDto) {
+        Answer answer = new Answer();
+        answer.setUserId(userService.getAuthenticatedUser().getId());
+        answer.setContent(answerDto.getContent());
+        answer.setAnswerId(answerDto.getAnswerId());
+
         // get form from db
         Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
         //formRepository.findAll().stream().filter(f -> f.getRecipients().contains(username)).findAny().orElseThrow(() -> new IllegalArgumentException("You are not invited to answer to this form"));

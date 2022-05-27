@@ -13,4 +13,6 @@ public interface UserService {
     List<User> getUsers();
 
     void addRoleToUser(String username, RoleName roleName);
+
+    User getAuthenticatedUser();
 }

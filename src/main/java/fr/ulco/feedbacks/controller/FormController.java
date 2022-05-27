@@ -21,50 +21,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FormController {
     private final FormService formService;
-    private final UserService userService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Form addForm(@RequestBody FormDto formDto, Authentication authentication) {
-        User user = userService.getUser(authentication.getName());
-
-        Form form = new Form();
-        form.setUserId(user.getId());
-        form.setFormName(formDto.getFormName());
-        form.setQuestions(formDto.getQuestions());
-        form.setRecipients(formDto.getRecipients());
-        return formService.addForm(form);
+    public Form addForm(@RequestBody FormDto formDto) {
+        return formService.addForm(formDto);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Form>> getAllFormsOfAuthenticatedUser(Authentication authentication) {
-        User user = userService.getUser(authentication.getName());
+    public ResponseEntity<List<Form>> getAllFormsOfAuthenticatedUser() {
         return ResponseEntity
                 .ok()
-                .body(formService.getAllMyFormsAsAnAuthenticatedUser(user.getId()));
+                .body(formService.getAllMyFormsAsAnAuthenticatedUser());
     }
 
     @GetMapping("/requests")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Form>> getAllMyRequestsAsAnAuthenticatedUser(Authentication authentication) {
-        User user = userService.getUser(authentication.getName());
+    public ResponseEntity<List<Form>> getAllMyRequestsAsAnAuthenticatedUser() {
         return ResponseEntity
                 .ok()
-                .body(formService.getAllMyRequestsAsAnAuthenticatedUser(user.getUsername()));
+                .body(formService.getAllMyRequestsAsAnAuthenticatedUser());
     }
 
     @PostMapping("/{id}/question/{questionId}/answer")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto, Authentication authentication) {
-        User user = userService.getUser(authentication.getName());
-
-        Answer answer = new Answer();
-        answer.setUserId(user.getId());
-        answer.setContent(answerDto.getContent());
-        answer.setAnswerId(answerDto.getAnswerId());
-
-        this.formService.addAnswer(id, questionId, answer, user.getId());
+    public void addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto) {
+        this.formService.addAnswer(id, questionId, answerDto);
     }
 
     @GetMapping("/all")
