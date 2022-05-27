@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/form")
 @RestController
 @RequiredArgsConstructor
 public class FormController {
     private final FormService formService;
 
-    @PostMapping("/form")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Form addForm(@RequestBody FormDto formDto) {
         return formService.addForm(formDto);
     }
 
-    @GetMapping("/form/all")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Form>> getAllMyFormsAsAnAuthenticatedUser() {
         return ResponseEntity
@@ -44,8 +45,7 @@ public class FormController {
         this.formService.addAnswer(id, questionId, answerDto);
     }
 
-
-    @GetMapping("/forms")
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Form>> getAllForms() {
         return ResponseEntity
@@ -53,14 +53,13 @@ public class FormController {
                 .body(formService.getAllForms());
     }
 
-    @DeleteMapping("/forms")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteAllForms() {
         formService.deleteAllForms();
     }
 
     /*
-
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<FormDto> getFormById(@PathVariable Long id) {
