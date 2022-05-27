@@ -26,4 +26,8 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getAllUsernames());
     }
 
+    // FOR ADMIN :
+    // DELETE USER BY ID
+    // PUT USER BY ID
+
 }

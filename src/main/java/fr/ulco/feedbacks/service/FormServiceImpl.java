@@ -11,14 +11,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class FormServiceImpl implements FormService {
+
 
     private final FormRepository formRepository;
     private final UserService userService;
@@ -41,8 +41,41 @@ public class FormServiceImpl implements FormService {
 
     @Override
     public List<Form> getAllMyRequestsAsAnAuthenticatedUser() {
-        // hide answers of other recipient
-        return formRepository.findAll().stream().filter(form -> form.getRecipients().contains(authService.getAuthenticatedUser().getUsername())).collect(Collectors.toList());
+        // hide answers of other recipients, see only my answers to the requests
+        User authenticatedUser = authService.getAuthenticatedUser();
+        List<Form> forms = formRepository.findAll().stream().filter(form -> form.getRecipients().contains(authenticatedUser.getUsername())).collect(Collectors.toList());
+
+        List<Form> formsWithAnswersOnlyOfAuthenticatedUser = new ArrayList<>();
+        for (Form f: forms) {
+            Form form = new Form();
+            form.setFormId(f.getFormId());
+            form.setFormName(f.getFormName());
+            form.setUserId(f.getUserId());
+            // we hide others recipients here
+            form.setRecipients(Collections.singletonList(authenticatedUser.getUsername()));
+
+            List<Question> questions = new ArrayList<>();
+            for(Question q : f.getQuestions()){
+                Question question = new Question();
+                question.setQuestionId(q.getQuestionId());
+                question.setContent(q.getContent());
+
+                List<Answer> answers = new ArrayList<>();
+                if(q.getAnswers() != null){
+                    for (Answer a : q.getAnswers()){
+                        if(a.getUserId().equals(authenticatedUser.getId())){
+                            answers.add(a);
+                        }
+                    }
+                }
+                question.setAnswers(answers);
+                questions.add(question);
+            }
+            form.setQuestions(questions);
+
+            formsWithAnswersOnlyOfAuthenticatedUser.add(form);
+        }
+        return formsWithAnswersOnlyOfAuthenticatedUser;
     }
 
     @Override
@@ -99,6 +132,10 @@ public class FormServiceImpl implements FormService {
         } else {
             return form;
         }
+    }
+
+    @Override
+    public void editAnswer(Long formId, Long questionId, AnswerDto answerDto) throws Exception {
     }
 
     /*

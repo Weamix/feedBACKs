@@ -26,9 +26,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
 @RequiredArgsConstructor
+
 /*
 /login vient de la class qui est extends
-surchargé dans SecurityConfig : customAuthenticationFilter.setFilterProcessesUrl("/auth/login");
+surchargé dans SecurityConfig : customAuthenticationFilter.setFilterProcessesUrl("/auth/login")
 Pour suivre la logique du UserController
 */
 
@@ -71,4 +72,5 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
         super.successfulAuthentication(request, response, chain, authResult);
     }
+
 }

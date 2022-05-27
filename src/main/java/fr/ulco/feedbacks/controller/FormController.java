@@ -79,6 +79,12 @@ public class FormController {
                 .body(formService.getById(id));
     }
 
+    @PutMapping("/{id}/question/{questionId}/answer")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void correctAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto) throws Exception {
+        this.formService.editAnswer(id, questionId, answerDto);
+    }
+
     /*
 
     @PostMapping("/{id}/question")
