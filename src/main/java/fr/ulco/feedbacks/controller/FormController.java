@@ -79,10 +79,10 @@ public class FormController {
                 .body(formService.getById(id));
     }
 
-    @PutMapping("/{id}/question/{questionId}/answer")
+    @PutMapping("/{id}/question/{questionId}/answer/{answerId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void correctAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto) throws Exception {
-        this.formService.editAnswer(id, questionId, answerDto);
+    public void correctAnswer(@PathVariable Long formId, @PathVariable Long questionId, @PathVariable Long answerId, @RequestBody AnswerDto answerDto) throws Exception {
+        this.formService.editAnswer(formId, questionId,answerId, answerDto);
     }
 
     // PUT Question

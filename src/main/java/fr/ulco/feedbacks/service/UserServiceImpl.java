@@ -7,7 +7,6 @@ import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

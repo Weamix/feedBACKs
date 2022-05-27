@@ -21,7 +21,6 @@ public class FormServiceImpl implements FormService {
 
 
     private final FormRepository formRepository;
-    private final UserService userService;
     private final AuthService authService;
 
     @Override
@@ -57,7 +56,6 @@ public class FormServiceImpl implements FormService {
             List<Question> questions = new ArrayList<>();
             for(Question q : f.getQuestions()){
                 Question question = new Question();
-                // avoid incremente on questionId => link to generated value in Question entity
                 question.setQuestionId(q.getQuestionId());
                 question.setContent(q.getContent());
 
@@ -109,6 +107,36 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
+    public void editAnswer(Long formId, Long questionId, Long answerId, AnswerDto answerDto) throws Exception {
+        User user = authService.getAuthenticatedUser();
+        Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
+
+        List<String> recipients = form.getRecipients();
+        if(user.getId().equals(form.getUserId())){
+            throw new Exception("You can't answer to you own form");
+        }
+        else if(recipients.contains(user.getUsername())){
+            Question question = form.getQuestions().stream()
+                    .filter(q -> q.getQuestionId().equals(questionId))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("QuestionId not found"));
+
+            Answer answer = question.getAnswers().stream()
+                    .filter(a -> a.getAnswerId()==answerId)
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("AnswerId not found"));
+
+            answer.setContent(answerDto.getContent());
+
+            question.getAnswers().add(answer.getAnswerId(), answer);
+
+            formRepository.save(form);
+        } else {
+            throw new Exception("You are not the author of this answer on this form");
+        }
+    }
+
+    @Override
     public List<Form> getAllForms() {
         return formRepository.findAll();
     }
@@ -136,10 +164,6 @@ public class FormServiceImpl implements FormService {
         } else {
             return form;
         }
-    }
-
-    @Override
-    public void editAnswer(Long formId, Long questionId, AnswerDto answerDto) throws Exception {
     }
 
     /*

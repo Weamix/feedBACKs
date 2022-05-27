@@ -19,7 +19,7 @@ public interface FormService {
     void deleteFormById(Long id) throws Exception;
     Form getById(Long id) throws Exception;
 
-    void editAnswer(Long id, Long questionId, AnswerDto answerDto) throws Exception;
+    void editAnswer(Long formId, Long questionId, Long answerId, AnswerDto answerDto) throws Exception;
 
 
     /*

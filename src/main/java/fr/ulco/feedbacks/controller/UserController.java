@@ -2,7 +2,6 @@ package fr.ulco.feedbacks.controller;
 
 import fr.ulco.feedbacks.dto.UpdateRoleDto;
 import fr.ulco.feedbacks.dto.UserDto;
-import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.service.UserService;
 import lombok.RequiredArgsConstructor;
