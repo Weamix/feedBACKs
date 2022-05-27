@@ -230,7 +230,7 @@
 					"name": "potential future endpoints",
 					"item": [
 						{
-							"name": "Delete answer from question",
+							"name": "delete answer from question",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -254,7 +254,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete question from form",
+							"name": "delete question from form",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -496,6 +496,49 @@
 					"response": []
 				},
 				{
+					"name": "correct answer to question",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3NjYwNn0.l1Wa6SmDNa0x530VZDOFKhvIan68PCS4Kb4TdChcmQ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Test correction\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1/question/1/answer/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1",
+								"question",
+								"1",
+								"answer",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "get form(s) of user authenticated",
 					"request": {
 						"auth": {
@@ -656,7 +699,7 @@
 					"name": "ADMIN",
 					"item": [
 						{
-							"name": "Update role of an user",
+							"name": "update role of an user",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -695,7 +738,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete an user by id",
+							"name": "delete an user by id",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -734,7 +777,7 @@
 							"response": []
 						},
 						{
-							"name": "Update user credentials by id",
+							"name": "update user credentials by id",
 							"request": {
 								"auth": {
 									"type": "bearer",
