@@ -1,11 +1,13 @@
 package fr.ulco.feedbacks.service;
 
+import fr.ulco.feedbacks.dto.UpdateRoleDto;
 import fr.ulco.feedbacks.dto.UserDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -73,18 +75,35 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void addRoleStringToUser(UpdateRoleDto updateRoleDto) {
+        User user = userRepository.findByUsername(updateRoleDto.getUsername());
+        RoleName roleName;
+        if(updateRoleDto.getRole().equals("ADMIN")){
+            roleName = RoleName.ADMIN;
+        } else{
+            roleName = RoleName.USER;
+        }
+        Role r = roleService.findByName(roleName);
+        user.getRoles().add(r);
+    }
+
+    @Override
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
 
     @Override
-    public void updateUserById(Long id, UserDto userDto) {
+    public void updateUserById(Long id, UserDto userDto) throws Exception {
         userRepository.findById(id).map(user -> {
             user.setUsername(userDto.getUsername());
-            userDto.setEmail(userDto.getEmail());
-            userDto.setPassword(userDto.getPassword());
+            user.setEmail(userDto.getEmail());
+            if(userDto.getPassword() == null){
+                user.setPassword(user.getPassword());
+            } else{
+                user.setPassword(userDto.getPassword());
+            }
             return userRepository.save(user);
-        });
-
+        })
+        .orElseThrow(() -> new Exception("UserId not found"));
     }
 }

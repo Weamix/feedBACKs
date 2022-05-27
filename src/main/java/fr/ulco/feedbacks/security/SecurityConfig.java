@@ -1,7 +1,5 @@
 package fr.ulco.feedbacks.security;
 
-import fr.ulco.feedbacks.entity.Role;
-import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.filter.CustomAuthenticationFilter;
 import fr.ulco.feedbacks.filter.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;

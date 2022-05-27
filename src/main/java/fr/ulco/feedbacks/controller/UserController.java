@@ -1,5 +1,6 @@
 package fr.ulco.feedbacks.controller;
 
+import fr.ulco.feedbacks.dto.UpdateRoleDto;
 import fr.ulco.feedbacks.dto.UserDto;
 import fr.ulco.feedbacks.entity.RoleName;
 import fr.ulco.feedbacks.entity.User;
@@ -7,7 +8,6 @@ import fr.ulco.feedbacks.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
@@ -31,9 +31,8 @@ public class UserController {
     }
 
     @PostMapping("/role")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Void> updateRoleOnUsername(@RequestBody String username, RoleName role){
-        userService.addRoleToUser(username, role);
+    public ResponseEntity<Void> updateRoleOnUsername(@RequestBody UpdateRoleDto updateRoleDto){
+        userService.addRoleStringToUser(updateRoleDto);
         return ResponseEntity
                 .noContent()
                 .build();
@@ -49,7 +48,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateUserCredentialsOnUserId(@PathVariable Long id, UserDto userDto) {
+    public ResponseEntity<Void> updateUserCredentialsOnUserId(@PathVariable Long id, @RequestBody UserDto userDto) throws Exception {
         userService.updateUserById(id, userDto);
         return ResponseEntity
                 .noContent()
