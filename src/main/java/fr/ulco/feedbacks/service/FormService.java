@@ -16,8 +16,8 @@ public interface FormService {
     List<Form> getAllForms();
     void deleteAllForms();
 
-    void deleteFormById(Long id);
-    Form getById(Long id);
+    void deleteFormById(Long id) throws Exception;
+    Form getById(Long id) throws Exception;
 
 
 

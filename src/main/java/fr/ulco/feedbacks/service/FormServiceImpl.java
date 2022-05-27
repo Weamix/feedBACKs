@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +40,7 @@ public class FormServiceImpl implements FormService {
 
     @Override
     public List<Form> getAllMyRequestsAsAnAuthenticatedUser() {
+        // hide answers of other recipient
         return formRepository.findAll().stream().filter(form -> form.getRecipients().contains(userService.getAuthenticatedUser().getUsername())).collect(Collectors.toList());
     }
 
@@ -79,13 +81,23 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public void deleteFormById(Long id) {
-        formRepository.deleteById(id);
+    public void deleteFormById(Long formId) throws Exception {
+        Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
+        if(!Objects.equals(form.getUserId(), userService.getAuthenticatedUser().getId())){
+            throw new Exception("You don't own this form");
+        } else {
+            formRepository.deleteById(formId);
+        }
     }
 
     @Override
-    public Form getById(Long id) {
-        return formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
+    public Form getById(Long formId) throws Exception {
+        Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
+        if(!Objects.equals(form.getUserId(), userService.getAuthenticatedUser().getId())){
+            throw new Exception("You don't own this form");
+        } else {
+            return form;
+        }
     }
 
     /*

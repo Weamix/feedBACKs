@@ -64,7 +64,7 @@ public class FormController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> deleteFormById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteFormById(@PathVariable Long id) throws Exception {
         formService.deleteFormById(id);
         return ResponseEntity
                 .noContent()
@@ -73,7 +73,7 @@ public class FormController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Form> getFormById(@PathVariable Long id) {
+    public ResponseEntity<Form> getFormById(@PathVariable Long id) throws Exception {
         return ResponseEntity
                 .ok()
                 .body(formService.getById(id));
