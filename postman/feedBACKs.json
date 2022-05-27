@@ -575,7 +575,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3ODQ3N30.zS10gao2j37FGCfHP9w4FgYphvks1DC0C1qgFMIi1VQ",
 									"type": "string"
 								}
 							]
@@ -653,33 +653,155 @@
 			"name": "users",
 			"item": [
 				{
-					"name": "get all users - need to be login as ADMIN",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZGFtaWVuIiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjcwMjQyfQ.xkKBdop22aiBTyU2bQwUKla8VKGK4rI94D13AowUJoQ",
-									"type": "string"
+					"name": "ADMIN",
+					"item": [
+						{
+							"name": "Update role of an user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY4NTEzNH0.1kll6aFNaHc6c9lvZ3Lo8RtoY9pzY57jxFiJuEkVaS4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"cfasquel\",\n  \"role\": \"ADMIN\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{ip}}:8080/users/role",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"role"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{ip}}:8080/users",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"users"
-							]
+						{
+							"name": "Delete an user by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY4Mjc4NH0.f-kFRgZWICYQN4uQ87qx3H5lDKHo3rwhc3OdlSuYx7U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"cfasquel\",\n    \"role\":\"ADMIN\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{ip}}:8080/users/3",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user credentials by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY4Mjg4NX0.57dE_lK_tlhWoPmN_kH1MH7Xe6VmnLyHA-xma7TnCFw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"damien\",\n  \"email\": \"damien@gmail.com\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{ip}}:8080/users/4",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all users - need to be login as ADMIN",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY4Mjc4NH0.f-kFRgZWICYQN4uQ87qx3H5lDKHo3rwhc3OdlSuYx7U",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{ip}}:8080/users",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "get all usernames - public endpoint if autenticated",
