@@ -9,33 +9,79 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "get all users - need to be login as ADMIN",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzYwMzk4MX0.9ono8hv5ID1-swtzPfFEaOIwdzknrMtjraSq73GBic0",
-									"type": "string"
+					"name": "ADMIN",
+					"item": [
+						{
+							"name": "login as an ADMIN - mvitse",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "mvitse",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "maxime",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{ip}}:8080/auth/login",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://{{ip}}:8080/users",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"users"
-							]
+						{
+							"name": "login as an ADMIN - alebas",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "alebas",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "lebas",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{ip}}:8080/auth/login",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "register an user - public endpoint",
@@ -140,76 +186,6 @@
 					"response": []
 				},
 				{
-					"name": "login as an ADMIN - mvitse",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "mvitse",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "maxime",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://{{ip}}:8080/auth/login",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "login as an ADMIN - alebas",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "alebas",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "lebas",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://{{ip}}:8080/auth/login",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "token refresh",
 					"request": {
 						"method": "GET",
@@ -221,7 +197,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://{{ip}}:8080/auth/token/refresh",
+							"raw": "http://{{ip}}:8080/auth/refresh",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
@@ -229,7 +205,6 @@
 							"port": "8080",
 							"path": [
 								"auth",
-								"token",
 								"refresh"
 							]
 						}
@@ -244,26 +219,6 @@
 				{
 					"name": "tofix",
 					"item": [
-						{
-							"name": "get form by id",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://{{ip}}:8080/form/1",
-									"protocol": "http",
-									"host": [
-										"{{ip}}"
-									],
-									"port": "8080",
-									"path": [
-										"form",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
 						{
 							"name": "Delete answer from question",
 							"request": {
@@ -305,26 +260,6 @@
 										"1",
 										"question",
 										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete form",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://{{ip}}:8080/form/2",
-									"protocol": "http",
-									"host": [
-										"{{ip}}"
-									],
-									"port": "8080",
-									"path": [
-										"form",
-										"2"
 									]
 								}
 							},
@@ -373,40 +308,81 @@
 					]
 				},
 				{
-					"name": "get all forms - need to be login as ADMIN",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjA0MDE4fQ.Wo50Bupywy7PdBASVbFoeqWOHD1yQ_5EZEKj_nf6BEI",
-									"type": "string"
+					"name": "ADMIN",
+					"item": [
+						{
+							"name": "get all forms - need to be login as ADMIN",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjQxNzk1fQ.1AwBQiQG1h_56891YvlUCp9w7bzVqCNfDlxoTZwcv4s",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{ip}}:8080/form/all",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"form",
+										"all"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjQxNzk1fQ.1AwBQiQG1h_56891YvlUCp9w7bzVqCNfDlxoTZwcv4s",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://{{ip}}:8080/form/all",
-							"protocol": "http",
-							"host": [
-								"{{ip}}"
-							],
-							"port": "8080",
-							"path": [
-								"form",
-								"all"
-							]
+						{
+							"name": "delete all forms - need to be login as ADMIN",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZWFtaXgiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDA6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUyNjQxNzk1fQ.1AwBQiQG1h_56891YvlUCp9w7bzVqCNfDlxoTZwcv4s"
+									}
+								],
+								"url": {
+									"raw": "http://{{ip}}:8080/form/all",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "8080",
+									"path": [
+										"form",
+										"all"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "create form - body made for login as gdamien or alebas",
@@ -416,7 +392,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZGFtaWVuIiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjA0MDQ4fQ.O8pW9AOwgGEWOXcvkm5fcVvxw8oGjOCXcJDM4-kUqk4",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
 									"type": "string"
 								}
 							]
@@ -425,7 +401,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"formName\": \"Entretien Mars\",\n  \"questions\": [\n    {\n      \"content\": \"Que-penses tu de mon implication ce mois-ci?\",\n      \"answers\": []\n    }\n  ],\n  \"recipients\": [\"cfasquel\",\"mvitse\"]\n  }",
+							"raw": "{\n  \"formName\": \"Entretien Mars\",\n  \"questions\": [\n    {\n      \"content\": \"Que-penses tu de mon implication ce mois-ci?\",\n      \"answers\": []\n    }\n  ],\n  \"recipients\": [\"cfasquel\",\"alebas\"]\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -455,7 +431,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzYwMzk4MX0.9ono8hv5ID1-swtzPfFEaOIwdzknrMtjraSq73GBic0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
 									"type": "string"
 								}
 							]
@@ -497,7 +473,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZGFtaWVuIiwicm9sZXMiOlsiVVNFUiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjA0MTU4fQ.XwWJDCJPZOcUEj3BeQD5GxxhF76qGNStCTDgj2K312g",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
 									"type": "string"
 								}
 							]
@@ -533,7 +509,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzYwMzk4MX0.9ono8hv5ID1-swtzPfFEaOIwdzknrMtjraSq73GBic0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGViYXMiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzY2NH0.cVyQL_mioxs9rNM-3yRgtzwT42sUvJcuRHXiTt-iB94",
 									"type": "string"
 								}
 							]
@@ -556,6 +532,66 @@
 							"path": [
 								"form",
 								"requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete form by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get form by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiJdLCJpc3MiOiJodHRwOi8vMTkyLjE2OC45OS4xMDE6ODA4MC9hdXRoL2xvZ2luIiwiZXhwIjoxNjUzNjYxNzI3fQ.gTr4tJHDMiMl3nj25dYYbfgaktC7NXBay88ZtMfC8Sc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/form/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"form",
+								"1"
 							]
 						}
 					},
@@ -748,6 +784,70 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get all users - need to be login as ADMIN",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2MzYxMn0.usn0KOzr9pexB5fGb7Dz7FRVkTfJjZS8u3i0761ULvs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/users",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all usernames - public endpoint if autenticated",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY2OTIwMn0.uIfgF_htu0gr3ockrygYqyjyccIJ7PuHLEaQB6Q8fQk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/users/usernames",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"usernames"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
