@@ -57,6 +57,7 @@ public class FormServiceImpl implements FormService {
             List<Question> questions = new ArrayList<>();
             for(Question q : f.getQuestions()){
                 Question question = new Question();
+                // avoid incremente on questionId => link to generated value in Question entity
                 question.setQuestionId(q.getQuestionId());
                 question.setContent(q.getContent());
 
@@ -84,7 +85,10 @@ public class FormServiceImpl implements FormService {
         Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
 
         List<String> recipients = form.getRecipients();
-        if(recipients.contains(user.getUsername()) && !user.getId().equals(form.getUserId())){
+        if(user.getId().equals(form.getUserId())){
+            throw new Exception("You can't answer to you own form");
+        }
+        else if(recipients.contains(user.getUsername())){
             Answer answer = new Answer();
             answer.setUserId(user.getId());
             answer.setContent(answerDto.getContent());
