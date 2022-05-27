@@ -5,13 +5,8 @@ import fr.ulco.feedbacks.dto.FormDto;
 import fr.ulco.feedbacks.entity.Answer;
 import fr.ulco.feedbacks.entity.Form;
 import fr.ulco.feedbacks.entity.Question;
-import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.repository.FormRepository;
-import fr.ulco.feedbacks.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,8 +64,13 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public List<Form> getAll() {
+    public List<Form> getAllForms() {
         return formRepository.findAll();
+    }
+
+    @Override
+    public void deleteAllForms() {
+        formRepository.deleteAll();
     }
 
     /*

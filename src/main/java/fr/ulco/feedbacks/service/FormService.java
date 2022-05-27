@@ -2,11 +2,7 @@ package fr.ulco.feedbacks.service;
 
 import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
-import fr.ulco.feedbacks.dto.QuestionDto;
-import fr.ulco.feedbacks.entity.Answer;
 import fr.ulco.feedbacks.entity.Form;
-import fr.ulco.feedbacks.entity.User;
-import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
@@ -16,7 +12,9 @@ public interface FormService {
     List<Form> getAllMyFormsAsAnAuthenticatedUser();
     List<Form> getAllMyRequestsAsAnAuthenticatedUser();
     void addAnswer(Long id, Long questionId, AnswerDto answerDto);
-    List<Form> getAll();
+
+    List<Form> getAllForms();
+    void deleteAllForms();
 
     /*
 

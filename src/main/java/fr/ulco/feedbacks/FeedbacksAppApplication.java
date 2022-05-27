@@ -1,11 +1,9 @@
 package fr.ulco.feedbacks;
 
-import fr.ulco.feedbacks.dto.AnswerDto;
-import fr.ulco.feedbacks.dto.FormDto;
-import fr.ulco.feedbacks.dto.QuestionDto;
+
+import fr.ulco.feedbacks.dto.SignUpDto;
 import fr.ulco.feedbacks.entity.Role;
 import fr.ulco.feedbacks.entity.RoleName;
-import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.service.FormService;
 import fr.ulco.feedbacks.service.RoleService;
 import fr.ulco.feedbacks.service.UserService;
@@ -15,10 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashSet;
 
 @SpringBootApplication
 public class FeedbacksAppApplication {
@@ -39,9 +33,9 @@ public class FeedbacksAppApplication {
 			roleService.saveRole(new Role(null, RoleName.USER));
 			roleService.saveRole(new Role(null, RoleName.ADMIN));
 
-			userService.saveUser(new User(null, "mvitse", "maxime", "maxime.vitse@decathlon.com", new HashSet<>()));
-			userService.saveUser(new User(null, "alebas", "lebas", "axel.lebas@decathlon.com", new HashSet<>()));
-			userService.saveUser(new User(null, "cfasquel", "fasquel", "clement.fasquel@eurotutu.com", new HashSet<>()));
+			userService.saveUser(new SignUpDto("mvitse", "maxime", "maxime.vitse@decathlon.com"));
+			userService.saveUser(new SignUpDto("alebas", "lebas", "axel.lebas@decathlon.com"));
+			userService.saveUser(new SignUpDto("cfasquel", "fasquel", "clement.fasquel@eurotutu.com"));
 
 			userService.addRoleToUser("cfasquel", RoleName.USER);
 			userService.addRoleToUser("mvitse", RoleName.ADMIN);

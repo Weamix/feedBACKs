@@ -1,13 +1,10 @@
 package fr.ulco.feedbacks.entity;
 
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.time.Instant;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter

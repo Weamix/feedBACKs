@@ -2,35 +2,29 @@ package fr.ulco.feedbacks.controller;
 
 import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
-import fr.ulco.feedbacks.entity.Answer;
 import fr.ulco.feedbacks.entity.Form;
-import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.service.FormService;
-import fr.ulco.feedbacks.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/form")
 @RequiredArgsConstructor
 public class FormController {
     private final FormService formService;
 
-    @PostMapping
+    @PostMapping("/form")
     @ResponseStatus(HttpStatus.CREATED)
     public Form addForm(@RequestBody FormDto formDto) {
         return formService.addForm(formDto);
     }
 
-    @GetMapping
+    @GetMapping("/form/all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Form>> getAllFormsOfAuthenticatedUser() {
+    public ResponseEntity<List<Form>> getAllMyFormsAsAnAuthenticatedUser() {
         return ResponseEntity
                 .ok()
                 .body(formService.getAllMyFormsAsAnAuthenticatedUser());
@@ -50,12 +44,19 @@ public class FormController {
         this.formService.addAnswer(id, questionId, answerDto);
     }
 
-    @GetMapping("/all")
+
+    @GetMapping("/forms")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Form>> getAllForms() {
         return ResponseEntity
                 .ok()
-                .body(formService.getAll());
+                .body(formService.getAllForms());
+    }
+
+    @DeleteMapping("/forms")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteAllForms() {
+        formService.deleteAllForms();
     }
 
     /*
