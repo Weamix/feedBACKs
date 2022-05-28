@@ -30,7 +30,7 @@ public class FormServiceImpl implements FormService {
 
         if(formDto.getQuestions().isEmpty()){
             throw new Exception("You need at least one question for create a form");
-        } else if(form.getRecipients().isEmpty()){
+        } else if(formDto.getRecipients().isEmpty()){
             throw new Exception("You need at least share the form to one recipient for create it");
         }
 
