@@ -46,7 +46,7 @@ public class ExternController {
     }
 
     @PutMapping("/users/{id}")
-    public void updateUser(@PathVariable Long id, @RequestBody String name) throws JSONException {
+    public void updateUser(@PathVariable Long id, @RequestBody String name) {
         String uri = "https://web-api-test1.herokuapp.com/users/";
         RestTemplate restTemplate = new RestTemplate();
 

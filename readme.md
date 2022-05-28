@@ -4,7 +4,7 @@
 
 ### Description du projet:
 
-Application web de demande de feedbacks aux collègues.
+Application web sécurisé de demande de feedbacks aux collègues.
 
 - Création d'un formulaire avec ajouts de questions
 - Partage du formulaire à un ou plusieurs collègues
@@ -39,9 +39,9 @@ Lombook (Getters/Setters auto généré avec une annotation au début des classe
 
 ### Links (attention l'IP présent ici peut varier chez vous)
 
-Swagger : [http://192.168.99.100:8080/swagger-ui/index.html][http://192.168.99.100:8080/swagger-ui/index.html]
+Swagger : [http://localhost:8080/swagger-ui/index.html][http://localhost/swagger-ui/index.html]
 
-API : [http://192.168.99.100:8080/][http://192.168.99.100:8080/]
+API : [http://localhost:8080/][http://localhost:8080/]
 
 Postman available in directory : [feedBACKs.json](./postman/feedBACKs.json)
 
@@ -62,8 +62,8 @@ mvn install -DskipTests
 docker build -t feedbacks.jar . && docker-compose up
 ```
 
-[http://192.168.99.100:8080/swagger-ui/index.html]: http://192.168.99.100:8080/swagger-ui/index.html
+[http://localhost:8080/swagger-ui/index.html]: http://localhost:8080/swagger-ui/index.html
 
-[http://192.168.99.100:8080/]: http://192.168.99.100:8080/
+[http://localhost:8080/]: http://localhost:8080/
 
 [https://github.com/alebas1/feedbacks-front]: https://github.com/alebas1/feedbacks-front
