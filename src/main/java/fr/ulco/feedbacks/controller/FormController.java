@@ -55,6 +55,7 @@ public class FormController {
     }
 
     @DeleteMapping("/all")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Void> deleteAllForms() {
         formService.deleteAllForms();
         return ResponseEntity
@@ -63,7 +64,7 @@ public class FormController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Void> deleteFormById(@PathVariable Long id) throws Exception {
         formService.deleteFormById(id);
         return ResponseEntity
@@ -80,7 +81,7 @@ public class FormController {
     }
 
     @PutMapping("/{formId}/question/{questionId}/answer/{answerId}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void correctAnswer(@PathVariable Long formId, @PathVariable Long questionId, @PathVariable Long answerId, @RequestBody AnswerDto answerDto) throws Exception {
         this.formService.editAnswer(formId, questionId,answerId, answerDto);
     }

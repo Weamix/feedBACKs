@@ -50,7 +50,27 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return usernames;
     }
 
-    // important for security
+    @Override
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateUserById(Long id, UserDto userDto) throws Exception {
+        userRepository.findById(id).map(user -> {
+            user.setUsername(userDto.getUsername());
+            user.setEmail(userDto.getEmail());
+            if(userDto.getPassword() == null){
+                user.setPassword(user.getPassword());
+            } else{
+                user.setPassword(userDto.getPassword());
+            }
+            return userRepository.save(user);
+        })
+                .orElseThrow(() -> new Exception("UserId not found"));
+    }
+
+    // important for Spring security
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) {
@@ -84,25 +104,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         Role r = roleService.findByName(roleName);
         user.getRoles().add(r);
-    }
-
-    @Override
-    public void deleteUserById(Long id) {
-        userRepository.deleteById(id);
-    }
-
-    @Override
-    public void updateUserById(Long id, UserDto userDto) throws Exception {
-        userRepository.findById(id).map(user -> {
-            user.setUsername(userDto.getUsername());
-            user.setEmail(userDto.getEmail());
-            if(userDto.getPassword() == null){
-                user.setPassword(user.getPassword());
-            } else{
-                user.setPassword(userDto.getPassword());
-            }
-            return userRepository.save(user);
-        })
-        .orElseThrow(() -> new Exception("UserId not found"));
     }
 }

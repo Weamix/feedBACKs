@@ -48,6 +48,8 @@ Postman available in directory : [feedBACKs.json](./postman/feedBACKs.json)
 [Github board](https://github.com/users/Weamix/projects/1/views/2
 ) : plus de détails en cliquant sur les cartes du board
 
+Front repository : [https://github.com/alebas1/feedbacks-front][https://github.com/alebas1/feedbacks-front]
+
 ### Fonctionnement depuis la branche base:
 
 #### Pour lancer le projet
@@ -63,3 +65,5 @@ docker build -t feedbacks.jar . && docker-compose up
 [http://192.168.99.100:8080/swagger-ui/index.html]: http://192.168.99.100:8080/swagger-ui/index.html
 
 [http://192.168.99.100:8080/]: http://192.168.99.100:8080/
+
+[https://github.com/alebas1/feedbacks-front]: https://github.com/alebas1/feedbacks-front

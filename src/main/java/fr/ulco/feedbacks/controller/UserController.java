@@ -20,16 +20,19 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<User>> getUsers() {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
     @GetMapping("/usernames")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<String>> getAllUsernames() {
         return ResponseEntity.ok().body(userService.getAllUsernames());
     }
 
     @PostMapping("/role")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Void> updateRoleOnUsername(@RequestBody UpdateRoleDto updateRoleDto){
         userService.addRoleStringToUser(updateRoleDto);
         return ResponseEntity
@@ -38,7 +41,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Void> deleteUserOnUserid(@PathVariable Long id) {
         userService.deleteUserById(id);
         return ResponseEntity
@@ -47,6 +50,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Void> updateUserCredentialsOnUserId(@PathVariable Long id, @RequestBody UserDto userDto) throws Exception {
         userService.updateUserById(id, userDto);
         return ResponseEntity

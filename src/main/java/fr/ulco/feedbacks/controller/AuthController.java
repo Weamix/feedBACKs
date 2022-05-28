@@ -4,6 +4,7 @@ import fr.ulco.feedbacks.dto.UserDto;
 import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,11 +24,13 @@ public class AuthController {
     // POST Login avec Spring Security : géré dans les Filter + SecurityConfig
 
     @PostMapping("/signup")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> registerUser(@Valid @RequestBody UserDto userDto) throws Exception {
         return ResponseEntity.ok().body(authService.saveUser(userDto));
     }
 
     @GetMapping("/refresh")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void refreshJwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         authService.refreshJWTofUser(request, response);
     }

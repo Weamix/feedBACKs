@@ -14,10 +14,10 @@ public interface UserService {
     User getUser(String username);
     List<User> getUsers();
     List<String> getAllUsernames();
+    void deleteUserById(Long id);
+    void updateUserById(Long id, UserDto userDto) throws Exception;
 
     // ROLE
     void addRoleToUser(String username, RoleName roleName);
     void addRoleStringToUser(UpdateRoleDto updateRoleDto);
-    void deleteUserById(Long id);
-    void updateUserById(Long id, UserDto userDto) throws Exception;
 }
