@@ -8,6 +8,7 @@ import fr.ulco.feedbacks.entity.User;
 import fr.ulco.feedbacks.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -42,11 +43,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<String> getAllUsernames() {
+    public List<String> getAllUsernamesExceptAuthenticatedUser() {
         List<String> usernames = new ArrayList<>();
         for (User u: getUsers()) {
             usernames.add(u.getUsername());
         }
+        // remove current user
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+        usernames.remove(username);
         return usernames;
     }
 

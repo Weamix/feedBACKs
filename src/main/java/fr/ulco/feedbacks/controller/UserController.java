@@ -25,10 +25,10 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUsers());
     }
 
-    @GetMapping("/usernames")
+    @GetMapping("/colleagues")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<String>> getAllUsernames() {
-        return ResponseEntity.ok().body(userService.getAllUsernames());
+    public ResponseEntity<List<String>> getAllUsernamesExceptAuthenticatedUser() {
+        return ResponseEntity.ok().body(userService.getAllUsernamesExceptAuthenticatedUser());
     }
 
     @PostMapping("/role")

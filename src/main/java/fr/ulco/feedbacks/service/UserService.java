@@ -13,7 +13,7 @@ public interface UserService {
     Boolean isUsernameFree(String email);
     User getUser(String username);
     List<User> getUsers();
-    List<String> getAllUsernames();
+    List<String> getAllUsernamesExceptAuthenticatedUser();
     void deleteUserById(Long id);
     void updateUserById(Long id, UserDto userDto) throws Exception;
 
