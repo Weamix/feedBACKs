@@ -75,10 +75,11 @@ cfasquel / fasquel (user
 
 Depuis le dossier racine de l'app :
 ```
-# line 3 of dockerfile seems not working :
+Pour build le jar de l'app (pas besoin de le faire on l'a push dans le repo)
 # commande qui fonctionne très bien dans le plugin maven helper de intellij :
 mvn install -DskipTests
 
+Puis pour lancer l'app et la bdd :
 docker build -t feedbacks.jar . && docker-compose up
 ```
 
