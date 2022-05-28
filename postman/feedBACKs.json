@@ -422,7 +422,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3NjU3Mn0.lqaKbBQIO61fHsmX5PGj7ec9Bkaa2yg5SY7eRVzntWI",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY4Njk3NH0.jFYyAniRIgQRSM3hh5CPHYVvvubz1yQSseVJIm7ehgs",
 									"type": "string"
 								}
 							]
@@ -503,7 +503,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3NjYwNn0.l1Wa6SmDNa0x530VZDOFKhvIan68PCS4Kb4TdChcmQ4",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY4Njk4Mn0.kpi4drr8u9rQwQ6iaxaQvHJ_SXJs6qIBOObOZAEtcSY",
 									"type": "string"
 								}
 							]
@@ -520,7 +520,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://{{ip}}:8080/form/1/question/1/answer/2",
+							"raw": "http://{{ip}}:8080/form/1/question/1/answer/1",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
@@ -532,7 +532,7 @@
 								"question",
 								"1",
 								"answer",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -816,7 +816,7 @@
 							"response": []
 						},
 						{
-							"name": "get all users - need to be login as ADMIN",
+							"name": "get all users",
 							"request": {
 								"auth": {
 									"type": "bearer",
