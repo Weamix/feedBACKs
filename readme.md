@@ -57,14 +57,26 @@ Front repository : [https://github.com/alebas1/feedbacks-front][https://github.c
 
 ![imgs/front-index.png](imgs/front-index.png)
 ![imgs/front-login.png](imgs/front-login.png)
+![imgs/front-register.png](imgs/front-register.png)
 ![imgs/front-myforms.png](imgs/front-myforms.png)
+![imgs/front-createforms.png](imgs/front-createforms.png)
 ![imgs/front-myrequests.png](imgs/front-myrequests.png)
+
+### Defaults accounts :
+```
+username / password (role) 
+
+mvitse / maxime (admin)
+alebas / lebas (admin)
+cfasquel / fasquel (user
+```
 
 ### How to run? (Depuis la branche base)
 
 Depuis le dossier racine de l'app :
 ```
 # line 3 of dockerfile seems not working :
+# commande qui fonctionne très bien dans le plugin maven helper de intellij :
 mvn install -DskipTests
 
 docker build -t feedbacks.jar . && docker-compose up
