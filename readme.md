@@ -39,20 +39,28 @@ Lombook (Getters/Setters auto généré avec une annotation au début des classe
 
 ### Links (attention l'IP présent ici peut varier chez vous)
 
-Swagger : [http://localhost:8080/swagger-ui/index.html][http://localhost/swagger-ui/index.html]
+Swagger : [http://localhost:8080/swagger-ui/index.html][http://localhost:8080/swagger-ui/index.html]
+
+![imgs/swagger.png](imgs/swagger.png)
 
 API : [http://localhost:8080/][http://localhost:8080/]
 
-Postman available in directory : [feedBACKs.json](./postman/feedBACKs.json)
+Postman available with more functionnalities than the front, in this directory : [feedBACKs.json](./postman/feedBACKs.json)
+
+![imgs/postman1.png](imgs/postman1.png)
+![imgs/postman2.png](imgs/postman2.png)
 
 [Github board](https://github.com/users/Weamix/projects/1/views/2
 ) : plus de détails en cliquant sur les cartes du board
 
 Front repository : [https://github.com/alebas1/feedbacks-front][https://github.com/alebas1/feedbacks-front]
 
-### Fonctionnement depuis la branche base:
+![imgs/front-index.png](imgs/front-index.png)
+![imgs/front-login.png](imgs/front-login.png)
+![imgs/front-myforms.png](imgs/front-myforms.png)
+![imgs/front-myrequests.png](imgs/front-myrequests.png)
 
-#### Pour lancer le projet
+### How to run? (Depuis la branche base)
 
 Depuis le dossier racine de l'app :
 ```
