@@ -539,7 +539,7 @@
 					"response": []
 				},
 				{
-					"name": "get form(s) of user authenticated",
+					"name": "get my form(s) as an user authenticated",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -575,7 +575,7 @@
 					"response": []
 				},
 				{
-					"name": "get requests as an user authenticated",
+					"name": "get my request(s) as an user authenticated",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -847,7 +847,7 @@
 					]
 				},
 				{
-					"name": "get all usernames - public endpoint if autenticated",
+					"name": "get all my colleagues - public endpoint if autenticated",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -862,7 +862,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://{{ip}}:8080/users/usernames",
+							"raw": "http://{{ip}}:8080/users/colleagues",
 							"protocol": "http",
 							"host": [
 								"{{ip}}"
