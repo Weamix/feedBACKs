@@ -25,13 +25,12 @@ public class AuthController {
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    // fix created et pas response entity ok
     public ResponseEntity<User> registerUser(@Valid @RequestBody UserDto userDto) throws Exception {
-        return ResponseEntity.ok().body(authService.saveUser(userDto));
+        return new ResponseEntity<>(authService.saveUser(userDto),HttpStatus.CREATED);
     }
 
     @GetMapping("/refresh")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public void refreshJwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         authService.refreshJWTofUser(request, response);
     }

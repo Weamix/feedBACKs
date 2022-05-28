@@ -43,11 +43,9 @@ public class FormController {
 
     @PostMapping("/{id}/question/{questionId}/answer")
     @ResponseStatus(HttpStatus.CREATED)
-    // fix return created et pas 200 ok
     public ResponseEntity<Answer> addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto) throws Exception {
-        return ResponseEntity
-                .ok()
-                .body(formService.addAnswer(id, questionId, answerDto));
+        return new ResponseEntity<>(formService.addAnswer(id, questionId, answerDto),HttpStatus.CREATED);
+
     }
 
     @GetMapping("/all")
@@ -59,20 +57,20 @@ public class FormController {
     }
 
     @DeleteMapping("/all")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteAllForms() {
         formService.deleteAllForms();
         return ResponseEntity
-                .noContent()
+                .ok()
                 .build();
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteFormById(@PathVariable Long id) throws Exception {
         formService.deleteFormById(id);
         return ResponseEntity
-                .noContent()
+                .ok()
                 .build();
     }
 
@@ -84,9 +82,7 @@ public class FormController {
                 .body(formService.getById(id));
     }
 
-    @PutMapping("/{formId}/question/{questionId}/answer/{answerId}")
-    // code error accepted ?
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PutMapping("/{formId}/question/{questionId}/answer/{answerId}") @ResponseStatus(HttpStatus.OK)
     public void correctAnswer(@PathVariable Long formId, @PathVariable Long questionId, @PathVariable Long answerId, @RequestBody AnswerDto answerDto) throws Exception {
         this.formService.editAnswer(formId, questionId,answerId, answerDto);
     }

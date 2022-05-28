@@ -19,5 +19,5 @@ public interface UserService {
 
     // ROLE
     void addRoleToUser(String username, RoleName roleName);
-    void addRoleStringToUser(UpdateRoleDto updateRoleDto);
+    UpdateRoleDto addRoleStringToUser(UpdateRoleDto updateRoleDto);
 }

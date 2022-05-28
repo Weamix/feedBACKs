@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void addRoleStringToUser(UpdateRoleDto updateRoleDto) {
+    public UpdateRoleDto addRoleStringToUser(UpdateRoleDto updateRoleDto) {
         User user = userRepository.findByUsername(updateRoleDto.getUsername());
         RoleName roleName;
         if(updateRoleDto.getRole().equals("ADMIN")){
@@ -104,5 +104,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         Role r = roleService.findByName(roleName);
         user.getRoles().add(r);
+
+        return updateRoleDto;
     }
 }
