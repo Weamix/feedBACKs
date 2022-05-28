@@ -78,16 +78,18 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public void addAnswer(Long formId, Long questionId, AnswerDto answerDto) throws Exception {
+    public Answer addAnswer(Long formId, Long questionId, AnswerDto answerDto) throws Exception {
         User user = authService.getAuthenticatedUser();
         Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
+        Answer answer = new Answer();
 
         List<String> recipients = form.getRecipients();
         if(user.getId().equals(form.getUserId())){
             throw new Exception("You can't answer to you own form");
         }
-        else if(recipients.contains(user.getUsername())){
-            Answer answer = new Answer();
+        else if(!recipients.contains(user.getUsername())) {
+            throw new Exception("You are not the author of this answer on this form");
+        } else {
             answer.setUserId(user.getId());
             answer.setContent(answerDto.getContent());
             answer.setAnswerId(answerDto.getAnswerId());
@@ -101,9 +103,8 @@ public class FormServiceImpl implements FormService {
             question.getAnswers().add(answer.getAnswerId(), answer);
 
             formRepository.save(form);
-        } else {
-            throw new Exception("You are not invited to answer this form");
         }
+        return answer;
     }
 
     @Override
@@ -113,9 +114,11 @@ public class FormServiceImpl implements FormService {
 
         List<String> recipients = form.getRecipients();
         if(user.getId().equals(form.getUserId())){
-            throw new Exception("You can't answer to you own form");
+            throw new Exception("You can't edit an answer on your own form");
         }
-        else if(recipients.contains(user.getUsername())){
+        else if(!recipients.contains(user.getUsername())) {
+            throw new Exception("You are not the author of this answer on this form");
+        } else {
             Question question = form.getQuestions().stream()
                     .filter(q -> q.getQuestionId().equals(questionId))
                     .findFirst()
@@ -126,13 +129,9 @@ public class FormServiceImpl implements FormService {
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("AnswerId not found"));
 
-            answer.setContent(answerDto.getContent());
-
-            question.getAnswers().add(answer.getAnswerId(), answer);
+            question.getAnswers().get(answer.getAnswerId()-1).setContent(answerDto.getContent());
 
             formRepository.save(form);
-        } else {
-            throw new Exception("You are not the author of this answer on this form");
         }
     }
 

@@ -2,6 +2,7 @@ package fr.ulco.feedbacks.controller;
 
 import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
+import fr.ulco.feedbacks.entity.Answer;
 import fr.ulco.feedbacks.entity.Form;
 import fr.ulco.feedbacks.service.FormService;
 import lombok.RequiredArgsConstructor;
@@ -42,8 +43,11 @@ public class FormController {
 
     @PostMapping("/{id}/question/{questionId}/answer")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto) throws Exception {
-        this.formService.addAnswer(id, questionId, answerDto);
+    // fix return created et pas 200 ok
+    public ResponseEntity<Answer> addAnswer(@PathVariable Long id, @PathVariable Long questionId, @RequestBody AnswerDto answerDto) throws Exception {
+        return ResponseEntity
+                .ok()
+                .body(formService.addAnswer(id, questionId, answerDto));
     }
 
     @GetMapping("/all")
@@ -81,6 +85,7 @@ public class FormController {
     }
 
     @PutMapping("/{formId}/question/{questionId}/answer/{answerId}")
+    // code error accepted ?
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void correctAnswer(@PathVariable Long formId, @PathVariable Long questionId, @PathVariable Long answerId, @RequestBody AnswerDto answerDto) throws Exception {
         this.formService.editAnswer(formId, questionId,answerId, answerDto);

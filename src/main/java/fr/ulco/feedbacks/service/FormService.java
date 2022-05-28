@@ -2,6 +2,7 @@ package fr.ulco.feedbacks.service;
 
 import fr.ulco.feedbacks.dto.AnswerDto;
 import fr.ulco.feedbacks.dto.FormDto;
+import fr.ulco.feedbacks.entity.Answer;
 import fr.ulco.feedbacks.entity.Form;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface FormService {
     Form addForm(FormDto formDto);
     List<Form> getAllMyFormsAsAnAuthenticatedUser();
     List<Form> getAllMyRequestsAsAnAuthenticatedUser();
-    void addAnswer(Long id, Long questionId, AnswerDto answerDto) throws Exception;
+    Answer addAnswer(Long id, Long questionId, AnswerDto answerDto) throws Exception;
 
     List<Form> getAllForms();
     void deleteAllForms();
