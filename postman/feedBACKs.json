@@ -153,6 +153,9 @@
 				{
 					"name": "login as a USER - cfasquel",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -193,7 +196,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1MzY3MDIwNn0.ZRoFmDn8A0Ix_EJjUsm_M-0DzMtOgiUXRSVL2ZXkiMo",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZmFzcXVlbCIsInJvbGVzIjpbIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1Mzc0MzY2Mn0.X0xBDjq2LubR7V4eg-E2B1vsQQd4d_pkXg-JjgjYhOM",
 									"type": "string"
 								}
 							]
@@ -870,7 +873,143 @@
 							"port": "8080",
 							"path": [
 								"users",
-								"usernames"
+								"colleagues"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "extern",
+			"item": [
+				{
+					"name": "random quote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1Mzc1MDMyNX0.VrY6gkxf8v56h2ZrCEpnxv862shCt31O-wkdDWRXtuA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/extern/quotes",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"extern",
+								"quotes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add user extern",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1Mzc1MjE2Mn0.g7bTCjMCY8dRqZsACd-iKrRMaGu5dlEFrx7NWq2mtGk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/extern/users",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"extern",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user extern",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1Mzc1MjE2Mn0.g7bTCjMCY8dRqZsACd-iKrRMaGu5dlEFrx7NWq2mtGk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{ip}}:8080/extern/users/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"extern",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put user extern",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdml0c2UiLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguOTkuMTAxOjgwODAvYXV0aC9sb2dpbiIsImV4cCI6MTY1Mzc1MjE2Mn0.g7bTCjMCY8dRqZsACd-iKrRMaGu5dlEFrx7NWq2mtGk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"usernameUpdated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{ip}}:8080/extern/users/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"extern",
+								"users",
+								"1"
 							]
 						}
 					},
