@@ -24,9 +24,15 @@ public class FormServiceImpl implements FormService {
     private final AuthService authService;
 
     @Override
-    public Form addForm(FormDto formDto) {
+    public Form addForm(FormDto formDto) throws Exception {
         Form form = new Form();
         User authenticatedUser = authService.getAuthenticatedUser();
+
+        if(formDto.getQuestions().isEmpty()){
+            throw new Exception("You need at least one question for create a form");
+        } else if(form.getRecipients().isEmpty()){
+            throw new Exception("You need at least share the form to one recipient for create it");
+        }
 
         form.setUserId(authenticatedUser.getId());
         form.setUsername(authenticatedUser.getUsername());

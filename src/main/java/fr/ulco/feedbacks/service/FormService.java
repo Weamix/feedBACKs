@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface FormService {
 
-    Form addForm(FormDto formDto);
+    Form addForm(FormDto formDto) throws Exception;
     List<Form> getAllMyFormsAsAnAuthenticatedUser();
     List<Form> getAllMyRequestsAsAnAuthenticatedUser();
     Answer addAnswer(Long id, Long questionId, AnswerDto answerDto) throws Exception;
