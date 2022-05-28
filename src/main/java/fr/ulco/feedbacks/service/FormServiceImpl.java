@@ -180,44 +180,4 @@ public class FormServiceImpl implements FormService {
         }
     }
 
-    /*
-    @Override
-    public void addQuestion(Long id, QuestionDto question) {
-        // static username for now
-        // TODO: get user from jwt token?
-        User user = userRepository.findByUsername("weamix");
-        Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
-        // add question to form
-        form.getQuestions().add(questionMapper.mapDtoToQuestion(question, user, form));
-
-        // update form updatedAt attribute
-        form.setUpdatedAt(Instant.now());
-    }
-
-    @Override
-    public void deleteQuestionById(Long id, Long questionId) {
-        // get form from db
-        Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
-        // remove question from form
-        form.getQuestions().removeIf(question -> question.getQuestionId().equals(questionId));
-
-        // update form updatedAt attribute
-        form.setUpdatedAt(Instant.now());
-    }
-
-    public void deleteAnswer(Long id, Long questionId, Long answerId) {
-        // get form from db
-        Form form = formRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Form not found"));
-        // get question from form
-        Question question = form.getQuestions().stream()
-                .filter(q -> q.getQuestionId().equals(questionId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Question not found"));
-
-        // remove answer from question
-        question.getAnswers().removeIf(answer -> answer.getAnswerId().equals(answerId));
-
-        // update form updatedAt attribute
-        form.setUpdatedAt(Instant.now());
-    }*/
 }

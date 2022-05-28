@@ -22,12 +22,4 @@ public interface FormService {
 
     void editAnswer(Long formId, Long questionId, Long answerId, AnswerDto answerDto) throws Exception;
 
-
-    /*
-    void addQuestion(Long id, QuestionDto question);
-
-    void deleteQuestionById(Long id, Long questionId);
-
-    void deleteAnswer(Long id, Long questionId, Long answerId);
-    */
 }
