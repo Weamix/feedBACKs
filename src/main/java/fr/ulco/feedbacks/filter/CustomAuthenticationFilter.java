@@ -70,7 +70,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), tokens);
 
-        super.successfulAuthentication(request, response, chain, authResult);
     }
 
 }
