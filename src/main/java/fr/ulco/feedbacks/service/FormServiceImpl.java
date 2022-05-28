@@ -32,6 +32,8 @@ public class FormServiceImpl implements FormService {
             throw new Exception("You need at least one question for create a form");
         } else if(formDto.getRecipients().isEmpty()){
             throw new Exception("You need at least share the form to one recipient for create it");
+        } else if(formDto.getRecipients().contains(authenticatedUser.getUsername())){
+            throw new Exception("You like monologue? Because you can't invite you to answer to your own form");
         }
 
         form.setUserId(authenticatedUser.getId());
@@ -143,8 +145,11 @@ public class FormServiceImpl implements FormService {
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("AnswerId not found"));
 
-            question.getAnswers().get(answer.getAnswerId()-1).setContent(answerDto.getContent());
-            question.getAnswers().get(answer.getAnswerId()-1).setUpdatedAt(answerDto.getUpdatedAt());
+            List<Answer> answers = question.getAnswers();
+            int indexAnswerToUpdate = answers.indexOf(answer);
+
+            question.getAnswers().get(indexAnswerToUpdate).setContent(answerDto.getContent());
+            question.getAnswers().get(indexAnswerToUpdate).setUpdatedAt(answerDto.getUpdatedAt());
 
             formRepository.save(form);
         }
