@@ -26,10 +26,14 @@ public class FormServiceImpl implements FormService {
     @Override
     public Form addForm(FormDto formDto) {
         Form form = new Form();
-        form.setUserId(authService.getAuthenticatedUser().getId());
+        User authenticatedUser = authService.getAuthenticatedUser();
+
+        form.setUserId(authenticatedUser.getId());
+        form.setUsername(authenticatedUser.getUsername());
         form.setFormName(formDto.getFormName());
         form.setQuestions(formDto.getQuestions());
         form.setRecipients(formDto.getRecipients());
+        form.setCreatedAt(formDto.getCreatedAt());
         return formRepository.save(form);
     }
 
@@ -50,6 +54,8 @@ public class FormServiceImpl implements FormService {
             form.setFormId(f.getFormId());
             form.setFormName(f.getFormName());
             form.setUserId(f.getUserId());
+            form.setUsername(f.getUsername());
+            form.setCreatedAt(f.getCreatedAt());
             // we hide others recipients here
             form.setRecipients(Collections.singletonList(authenticatedUser.getUsername()));
 
@@ -79,21 +85,23 @@ public class FormServiceImpl implements FormService {
 
     @Override
     public Answer addAnswer(Long formId, Long questionId, AnswerDto answerDto) throws Exception {
-        User user = authService.getAuthenticatedUser();
+        User authenticatedUser = authService.getAuthenticatedUser();
         Form form = formRepository.findById(formId).orElseThrow(() -> new IllegalArgumentException("Form not found"));
         Answer answer = new Answer();
 
         List<String> recipients = form.getRecipients();
-        if(user.getId().equals(form.getUserId())){
+        if(authenticatedUser.getId().equals(form.getUserId())){
             throw new Exception("You can't answer to you own form");
         }
-        else if(!recipients.contains(user.getUsername())) {
+        else if(!recipients.contains(authenticatedUser.getUsername())) {
             throw new Exception("You are not the author of this answer on this form");
         } else {
-            answer.setUserId(user.getId());
+            answer.setUserId(authenticatedUser.getId());
+            answer.setUsername(authenticatedUser.getUsername());
             answer.setContent(answerDto.getContent());
             answer.setAnswerId(answerDto.getAnswerId());
-
+            answer.setCreatedAt(answerDto.getCreatedAt());
+            answer.setUpdatedAt(answerDto.getUpdatedAt());
 
             Question question = form.getQuestions().stream()
                     .filter(q -> q.getQuestionId().equals(questionId))
@@ -130,6 +138,7 @@ public class FormServiceImpl implements FormService {
                     .orElseThrow(() -> new IllegalArgumentException("AnswerId not found"));
 
             question.getAnswers().get(answer.getAnswerId()-1).setContent(answerDto.getContent());
+            question.getAnswers().get(answer.getAnswerId()-1).setUpdatedAt(answerDto.getUpdatedAt());
 
             formRepository.save(form);
         }

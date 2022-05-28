@@ -17,7 +17,6 @@ public class FormDto {
     @NonNull private String formName;
     @Builder.Default private List<Question> questions = new ArrayList<>();
     @Builder.Default private Instant createdAt = Instant.now();
-    @Builder.Default private Instant updatedAt = Instant.now();
     private Long userId;
     @NonNull  private List<String> recipients;
 }

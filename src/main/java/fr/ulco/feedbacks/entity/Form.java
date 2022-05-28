@@ -6,6 +6,7 @@ import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.time.Instant;
 import java.util.List;
 
 @Getter
@@ -30,7 +31,10 @@ public class Form {
     @ToString.Exclude
     private List<Question> questions;
 
+    private Instant createdAt;
+
     private Long userId;
+    private String username;
 
     @ElementCollection(targetClass = String.class)
     private List<String> recipients;
