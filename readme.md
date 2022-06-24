@@ -68,7 +68,7 @@ username / password (role)
 
 mvitse / maxime (admin)
 alebas / lebas (admin)
-cfasquel / fasquel (user
+cfasquel / fasquel (user)
 ```
 
 ### How to run? (Depuis la branche base)
